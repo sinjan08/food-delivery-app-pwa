@@ -9,6 +9,7 @@ CREATE TABLE "User" (
     "phone" TEXT,
     "password" TEXT NOT NULL,
     "address" TEXT,
+    "country" TEXT,
     "city" TEXT,
     "state" TEXT,
     "zipCode" TEXT,

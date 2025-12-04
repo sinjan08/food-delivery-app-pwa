@@ -1,3 +1,96 @@
+// datasource db {
+//   provider = "postgresql"
+// }
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// model User {
+//   id        Int       @id @default(autoincrement())
+//   name      String
+//   email     String    @unique
+//   phone     String?   @unique
+//   password  String
+//   address   String?
+//   country   String?
+//   city      String?
+//   state     String?
+//   zipCode   String?
+//   createdAt DateTime  @default(now())
+//   updatedAt DateTime  @updatedAt
+//   isActive  Boolean   @default(true)
+//   deletedAt DateTime?
+
+//   // Relations
+//   userRoles          UserRole[]
+//   refreshTokens      RefreshToken[]
+//   oauthAccounts      OAuthAccount[]
+//   verificationTokens VerificationToken[] // we'll define below
+
+//   @@index([email])
+//   @@index([phone])
+// }
+
+// model Role {
+//   id        Int        @id @default(autoincrement())
+//   code      String     @unique @db.VarChar(50)
+//   name      String     @unique @db.VarChar(100)
+//   createdAt DateTime   @default(now())
+//   userRoles UserRole[]
+// }
+
+// model UserRole {
+//   id     Int  @id @default(autoincrement())
+//   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId Int
+//   role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+//   roleId Int
+
+//   @@unique([userId, roleId])
+//   @@index([roleId])
+// }
+
+// model RefreshToken {
+//   id        Int      @id @default(autoincrement())
+//   token     String   @unique
+//   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId    Int
+//   expiresAt DateTime
+//   createdAt DateTime @default(now())
+
+//   @@index([userId])
+// }
+
+// model OAuthAccount {
+//   id             Int      @id @default(autoincrement())
+//   provider       String
+//   providerUserId String
+//   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId         Int
+//   createdAt      DateTime @default(now())
+
+//   @@unique([provider, providerUserId])
+//   @@index([userId])
+// }
+
+// model VerificationToken {
+//   id        Int              @id @default(autoincrement())
+//   token     String           @unique
+//   user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId    Int
+//   type      VerificationType
+//   expiresAt DateTime
+//   createdAt DateTime         @default(now())
+// }
+
+// enum VerificationType {
+//   EMAIL
+//   PHONE
+//   FORGOT_PASSWORD
+//   VERIFY_ACCOUNT
+// }
+
 datasource db {
   provider = "postgresql"
 }
@@ -7,15 +100,24 @@ generator client {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  name      String
-  email     String    @unique
-  phone     String?   @unique
-  password  String
-  address   String?
-  city      String?
-  state     String?
-  zipCode   String?
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  phone    String? @unique
+  password String
+
+  address String?
+  zipCode String?
+
+  // 🔥 New Relations
+  countryId Int?
+  stateId   Int?
+  cityId    Int?
+
+  country Country? @relation(fields: [countryId], references: [id])
+  state   State?   @relation(fields: [stateId], references: [id])
+  city    City?    @relation(fields: [cityId], references: [id])
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   isActive  Boolean   @default(true)
@@ -25,10 +127,13 @@ model User {
   userRoles          UserRole[]
   refreshTokens      RefreshToken[]
   oauthAccounts      OAuthAccount[]
-  verificationTokens VerificationToken[] // we'll define below
+  verificationTokens VerificationToken[]
 
   @@index([email])
   @@index([phone])
+  @@index([countryId])
+  @@index([stateId])
+  @@index([cityId])
 }
 
 model Role {
@@ -88,4 +193,95 @@ enum VerificationType {
   PHONE
   FORGOT_PASSWORD
   VERIFY_ACCOUNT
+}
+
+model Country {
+  id             Int      @id @default(autoincrement())
+  name           String
+  iso3           String?  @db.Char(3)
+  numericCode    String?  @map("numeric_code") @db.Char(3)
+  iso2           String?  @db.Char(2)
+  phonecode      String?
+  capital        String?
+  currency       String?
+  currencyName   String?  @map("currency_name")
+  currencySymbol String?  @map("currency_symbol")
+  tld            String?
+  native         String?
+  population     BigInt?
+  gdp            BigInt?
+  nationality    String?
+  timezones      Json?
+  translations   Json?
+  latitude       Decimal? @db.Decimal(10, 8)
+  longitude      Decimal? @db.Decimal(11, 8)
+  emoji          String?
+  emojiU         String?
+  wikiDataId     String?
+  flag           Boolean  @default(true)
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at")
+
+  states State[]
+  cities City[]
+  users  User[] // 🔥 added for reverse lookup
+
+  @@map("countries")
+}
+
+model State {
+  id           Int      @id @default(autoincrement())
+  name         String
+  countryCode  String   @map("country_code")
+  fipsCode     String?  @map("fips_code")
+  iso2         String?
+  iso3166_2    String?
+  type         String?
+  level        Int?
+  parentId     Int?     @map("parent_id")
+  native       String?
+  latitude     Decimal? @db.Decimal(10, 8)
+  longitude    Decimal? @db.Decimal(11, 8)
+  timezone     String?
+  translations Json?
+  wikiDataId   String?
+  flag         Boolean  @default(true)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
+
+  country   Country @relation(fields: [countryId], references: [id])
+  countryId Int     @map("country_id")
+
+  cities City[]
+  users  User[] // 🔥 reverse relation
+
+  @@index([countryId])
+  @@map("states")
+}
+
+model City {
+  id           Int      @id @default(autoincrement())
+  name         String
+  stateCode    String   @map("state_code")
+  countryCode  String   @map("country_code")
+  latitude     Decimal  @db.Decimal(10, 8)
+  longitude    Decimal  @db.Decimal(10, 8)
+  native       String?
+  timezone     String?
+  translations Json?
+  wikiDataId   String?
+  flag         Boolean  @default(true)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
+
+  state     State   @relation(fields: [stateId], references: [id])
+  stateId   Int     @map("state_id")
+  country   Country @relation(fields: [countryId], references: [id])
+  countryId Int     @map("country_id")
+
+  users User[] // 🔥 reverse relation
+
+  @@index([stateId])
+  @@index([countryId])
+  @@map("cities")
 }
