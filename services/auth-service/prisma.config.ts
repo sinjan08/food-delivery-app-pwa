@@ -7,8 +7,11 @@ export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
+    seed: "tsx prisma/seed.ts"
   },
   datasource: {
+    adapter: "postgresql",
     url: env("DATABASE_URL"),
   },
 });
+

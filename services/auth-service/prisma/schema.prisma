@@ -1,102 +1,10 @@
-// datasource db {
-//   provider = "postgresql"
-// }
-
-// generator client {
-//   provider = "prisma-client-js"
-// }
-
-// model User {
-//   id        Int       @id @default(autoincrement())
-//   name      String
-//   email     String    @unique
-//   phone     String?   @unique
-//   password  String
-//   address   String?
-//   country   String?
-//   city      String?
-//   state     String?
-//   zipCode   String?
-//   createdAt DateTime  @default(now())
-//   updatedAt DateTime  @updatedAt
-//   isActive  Boolean   @default(true)
-//   deletedAt DateTime?
-
-//   // Relations
-//   userRoles          UserRole[]
-//   refreshTokens      RefreshToken[]
-//   oauthAccounts      OAuthAccount[]
-//   verificationTokens VerificationToken[] // we'll define below
-
-//   @@index([email])
-//   @@index([phone])
-// }
-
-// model Role {
-//   id        Int        @id @default(autoincrement())
-//   code      String     @unique @db.VarChar(50)
-//   name      String     @unique @db.VarChar(100)
-//   createdAt DateTime   @default(now())
-//   userRoles UserRole[]
-// }
-
-// model UserRole {
-//   id     Int  @id @default(autoincrement())
-//   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   userId Int
-//   role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
-//   roleId Int
-
-//   @@unique([userId, roleId])
-//   @@index([roleId])
-// }
-
-// model RefreshToken {
-//   id        Int      @id @default(autoincrement())
-//   token     String   @unique
-//   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   userId    Int
-//   expiresAt DateTime
-//   createdAt DateTime @default(now())
-
-//   @@index([userId])
-// }
-
-// model OAuthAccount {
-//   id             Int      @id @default(autoincrement())
-//   provider       String
-//   providerUserId String
-//   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   userId         Int
-//   createdAt      DateTime @default(now())
-
-//   @@unique([provider, providerUserId])
-//   @@index([userId])
-// }
-
-// model VerificationToken {
-//   id        Int              @id @default(autoincrement())
-//   token     String           @unique
-//   user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   userId    Int
-//   type      VerificationType
-//   expiresAt DateTime
-//   createdAt DateTime         @default(now())
-// }
-
-// enum VerificationType {
-//   EMAIL
-//   PHONE
-//   FORGOT_PASSWORD
-//   VERIFY_ACCOUNT
-// }
-
 datasource db {
   provider = "postgresql"
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "./generated"
 }
 
 model User {
