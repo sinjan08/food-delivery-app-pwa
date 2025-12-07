@@ -1,5 +1,6 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import fs from "fs";
 import path from "path";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
@@ -45,6 +46,14 @@ export default defineConfig({
       },
     })
   ],
+  server: {
+    https: {
+      key: fs.readFileSync("./cert/key.pem"),
+      cert: fs.readFileSync("./cert/cert.pem"),
+    },
+    host: true,      // allows LAN access
+    port: 5173
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

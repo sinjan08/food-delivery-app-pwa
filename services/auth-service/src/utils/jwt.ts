@@ -1,7 +1,5 @@
-
-import jwt from 'jsonwebtoken';
+import jwt, { Secret, SignOptions } from 'jsonwebtoken';
 import { env } from '../config/env';
-
 
 type JwtPayload = {
   id: number;
@@ -10,32 +8,33 @@ type JwtPayload = {
   roles: string[];
 };
 
+const JWT_SECRET: Secret = env.JWT_SECRET as Secret;
+
 export default {
-  sign(user: { id: number; email: string; phone: string; roles: string[] }) {
-    try {
-      // Implement JWT signing logic here using JWT_SECRET
-      const payload: JwtPayload = {
-        id: user.id,
-        email: user.email,
-        phone: user.phone,
-        roles: user.roles,
-      };
-      // creting jwt token
-      const token = jwt.sign(payload, env.JWT_SECRET, { expiresIn: "7d" });
-      return token;
-    } catch (err) {
-      console.error('JWT signing failed:', err);
-      throw err;
-    }
+  sign(
+    user: { id: number; email: string; phone: string; roles: string[] },
+    expiresIn?: string
+  ): string {
+    const payload: JwtPayload = {
+      id: user.id,
+      email: user.email,
+      phone: user.phone,
+      roles: user.roles,
+    };
+
+    const options: SignOptions = {
+      expiresIn: expiresIn || ("7d" as any),
+    };
+
+    return jwt.sign(payload, JWT_SECRET, options);
   },
 
   verify(token: string): JwtPayload | null {
     try {
-      const decoded = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
-      return decoded;
+      return jwt.verify(token, JWT_SECRET) as JwtPayload;
     } catch (err) {
-      console.error('JWT verification failed:', err);
+      console.error("JWT verification failed:", err);
       return null;
     }
   },
-}
+};

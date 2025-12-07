@@ -8,13 +8,13 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/User.js'
-export type * from './models/Role.js'
-export type * from './models/UserRole.js'
-export type * from './models/RefreshToken.js'
-export type * from './models/OAuthAccount.js'
-export type * from './models/VerificationToken.js'
-export type * from './models/Country.js'
-export type * from './models/State.js'
-export type * from './models/City.js'
-export type * from './commonInputTypes.js'
+export type * from './models/User'
+export type * from './models/Role'
+export type * from './models/UserRole'
+export type * from './models/RefreshToken'
+export type * from './models/OAuthAccount'
+export type * from './models/VerificationToken'
+export type * from './models/Country'
+export type * from './models/State'
+export type * from './models/City'
+export type * from './commonInputTypes'
