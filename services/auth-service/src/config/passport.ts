@@ -26,12 +26,12 @@ passport.use(
       clientSecret: env.GOOGLE_CLIENT_SECRET,
       callbackURL: env.GOOGLE_CALLBACK_URL,
     },
-    async (_, __, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       try {
-        const user = await authService.googleLogin(profile);
-        done(null, user);
-      } catch (err) {
-        done(err);
+        const user = await authService.loginViaGoogle(profile);
+        return done(null, user);
+      } catch (err: any) {
+        return done(null, err);
       }
     }
   )

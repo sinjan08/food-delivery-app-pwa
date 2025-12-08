@@ -1,5 +1,9 @@
+import { env } from "@/config/env";
+import { verifyEmailTemplate } from "@/templates/verifyEmail.template";
+import { sendMail } from "@/utils/mailsend";
 import bcrypt from "bcrypt";
 import { randomBytes } from "node:crypto";
+import * as otpgenerator from "otp-generator";
 import logger from "../config/logger";
 import prisma from "../config/prisma";
 import jwt from "../utils/jwt";
@@ -322,6 +326,306 @@ class AuthService {
     } catch (err: any) {
       logger.error('Error during logout:', err);
       throw new Error('An error occurred during logout: ' + err.message);
+    }
+  }
+
+  async validateUser(email: string, password: string) {
+    try {
+      logger.debug(`Validating user with email: ${email}`);
+      // finding user by email
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) {
+        logger.warn('User not found during validation');
+        return null;
+      }
+
+      return user;
+    } catch (err: any) {
+      logger.error('Error during user validation:', err);
+      throw new Error('An error occurred during user validation: ' + err.message);
+    }
+  }
+
+  async loginViaGoogle(profile: any) {
+    const email = profile.emails?.[0]?.value;
+    const providerUserId = profile.id;
+
+    let user = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email },
+          {
+            oauthAccounts: {
+              some: {
+                provider: "google",
+                providerUserId,
+              }
+            }
+          }
+        ]
+      },
+      include: {
+        userRoles: { include: { role: true } }
+      }
+    });
+
+    if (!user) {
+      // auto-register new google user
+      user = await prisma.user.create({
+        data: {
+          name: profile.displayName || "Google User",
+          email,
+          password: crypto.randomUUID(), // technical password
+          oauthAccounts: {
+            create: {
+              provider: "google",
+              providerUserId,
+            },
+          },
+        },
+        include: {
+          userRoles: { include: { role: true } }
+        }
+      });
+
+      // assign role USER
+      await this.assignRoleToUser(user.id, "USER");
+    }
+
+    return user;
+  }
+
+  async completeGoogleLogin(user: any) {
+    const roles = user.userRoles.map((ur: any) => ur.role.code);
+
+    return {
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone || '',
+        roles,
+      },
+      accessToken: jwt.sign({
+        id: user.id,
+        email: user.email,
+        phone: user.phone || '',
+        roles,
+      }),
+      refreshToken: (await this.createRefreshToken(user.id)).token,
+    };
+  }
+
+
+  async generateOtp(phoneNumber: string) {
+    {
+      try {
+        logger.debug(`Sending OTP to phone number: ${phoneNumber}`);
+
+        let user = await prisma.user.findUnique({ where: { phone: phoneNumber } });
+
+        if (!user) {
+          user = await prisma.user.create({
+            data: {
+              name: "Anonymous",
+              email: `anon_${Date.now()}@yopmail.com`,
+              password: crypto.randomUUID(),
+            },
+            include: {
+              userRoles: { include: { role: true } }
+            }
+          });
+        }
+
+        const otp = otpgenerator.generate(6, {
+          upperCaseAlphabets: false,
+          lowerCaseAlphabets: false,
+          specialChars: false,
+        });
+        logger.info(`Generated OTP: ${otp} for phone number: ${phoneNumber}`);
+
+        const expiry = new Date();
+        expiry.setMinutes(expiry.getMinutes() + 10); // OTP valid for 10 minutes
+
+        await prisma.verificationToken.create({
+          data: {
+            userId: user.id,
+            token: otp,
+            type: 'PHONE',
+            expiresAt: expiry,
+          }
+        });
+
+        return otp;
+      } catch (error: any) {
+        logger.error('Error sending OTP:', error);
+        throw new Error('An error occurred while sending OTP: ' + error.message);
+      }
+    }
+  }
+
+
+  async verifyOtp(phoneNumber: string, otp: string) {
+    try {
+      logger.debug(`Verifying OTP for phone number: ${phoneNumber}`);
+
+      const user = await prisma.user.findUnique({
+        where: { phone: phoneNumber },
+        include: {
+          userRoles: { include: { role: true } }
+        }
+      });
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      const verificationToken = await prisma.verificationToken.findFirst({
+        where: {
+          userId: user.id,
+          token: otp,
+          type: 'PHONE',
+        },
+      });
+
+      if (!verificationToken) {
+        throw new Error('Invalid OTP');
+      }
+
+      if (verificationToken.expiresAt < new Date()) {
+        throw new Error('OTP has expired');
+      }
+
+      return {
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          phone: user.phone || '',
+          roles: user.userRoles.map(ur => ur.role.name),
+        },
+        accessToken: jwt.sign({
+          id: user.id,
+          email: user.email,
+          phone: user.phone || '',
+          roles: user.userRoles.map(ur => ur.role.name),
+        }),
+        refreshToken: (await this.createRefreshToken(user.id)).token
+      };
+    } catch (error: any) {
+      logger.error('Error verifying OTP:', error);
+      throw new Error('An error occurred while verifying OTP: ' + error.message);
+    }
+  }
+
+
+  async getLoggedInUser(userId: number) {
+    try {
+      logger.debug(`Fetching logged in user with ID: ${userId}`);
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        include: {
+          userRoles: { include: { role: true } },
+          country: true,
+          state: true,
+          city: true,
+        }
+      });
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      return user;
+    } catch (err: any) {
+      logger.error('Error fetching logged in user:', err);
+      throw new Error('An error occurred while fetching logged in user: ' + err.message);
+    }
+  }
+
+  async sendVerificationMail(userId: number) {
+    try {
+      logger.debug(`Sending verification email to user ID: ${userId}`);
+      const user = await prisma.user.findUnique({ where: { id: userId } });
+      if (!user) {
+        throw new Error('User not found');
+      }
+      // delete old tokens
+      await prisma.verificationToken.deleteMany({
+        where: { userId, type: "EMAIL" },
+      });
+      // generate token
+      const rawToken = crypto.randomUUID();
+      const hashed = await bcrypt.hash(rawToken, 10);
+
+      const expires = new Date();
+      expires.setHours(expires.getHours() + 1);
+
+      await prisma.verificationToken.create({
+        data: {
+          token: hashed,
+          type: "EMAIL",
+          expiresAt: expires,
+          userId: user.id,
+        },
+      });
+
+      const link = `${env.FRONTEND_URL}/verify-email?token=${rawToken}&uid=${user.id}`;
+
+      const mailBody = await verifyEmailTemplate(user.name, link);
+      // send email
+      const info = await sendMail(
+        user.email,
+        `Verify your email for ${env.APP_NAME}`,
+        mailBody
+      );
+
+      logger.info(`Verification email sent to ${user.email}: ${info.messageId}`);
+
+      return info;
+
+    } catch (error: any) {
+      logger.error('Error sending verification email:', error);
+      throw new Error('An error occurred while sending verification email: ' + error.message);
+    }
+  }
+
+
+  async verifyEmailLink(token: string, uid: any) {
+    try {
+      logger.debug(`Verifying email link for user ID: ${uid}`);
+      const userId = parseInt(uid, 10);
+      const record = await prisma.verificationToken.findFirst({
+        where: {
+          userId,
+          type: "EMAIL",
+        },
+      });
+
+      if (!record) {
+        throw new Error('Invalid verification token');
+      }
+
+      const isValid = await bcrypt.compare(token, record.token);
+      if (!isValid) {
+        throw new Error('Invalid verification token');
+      }
+
+      if (record.expiresAt < new Date()) {
+        throw new Error('Verification token has expired');
+      }
+
+      await prisma.verificationToken.deleteMany({
+        where: { userId, type: "EMAIL" },
+      });
+
+      return await prisma.user.update({
+        where: { id: userId },
+        data: { emailVerifiedAt: new Date() },
+      });
+    } catch (error: any) {
+      logger.error('Error verifying email link:', error);
+      throw new Error('An error occurred while verifying email link: ' + error.message);
     }
   }
 }

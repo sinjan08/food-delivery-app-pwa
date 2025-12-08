@@ -12,7 +12,7 @@ model User {
   name     String
   email    String  @unique
   phone    String? @unique
-  password String
+  password String?
 
   address String?
   zipCode String?
@@ -26,10 +26,12 @@ model User {
   state   State?   @relation(fields: [stateId], references: [id])
   city    City?    @relation(fields: [cityId], references: [id])
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  isActive  Boolean   @default(true)
-  deletedAt DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  isActive        Boolean   @default(true)
+  deletedAt       DateTime?
+  emailVerifiedAt DateTime?
+  phoneVerifiedAt DateTime?
 
   // Relations
   userRoles          UserRole[]
@@ -121,8 +123,8 @@ model Country {
   nationality    String?
   timezones      Json?
   translations   Json?
-  latitude       Decimal? @db.Decimal(10, 8)
-  longitude      Decimal? @db.Decimal(11, 8)
+  latitude       Decimal? @db.Decimal(15, 8)
+  longitude      Decimal? @db.Decimal(15, 8)
   emoji          String?
   emojiU         String?
   wikiDataId     String?
@@ -148,8 +150,8 @@ model State {
   level        Int?
   parentId     Int?     @map("parent_id")
   native       String?
-  latitude     Decimal? @db.Decimal(10, 8)
-  longitude    Decimal? @db.Decimal(11, 8)
+  latitude     Decimal? @db.Decimal(15, 8)
+  longitude    Decimal? @db.Decimal(15, 8)
   timezone     String?
   translations Json?
   wikiDataId   String?
@@ -172,8 +174,8 @@ model City {
   name         String
   stateCode    String   @map("state_code")
   countryCode  String   @map("country_code")
-  latitude     Decimal  @db.Decimal(10, 8)
-  longitude    Decimal  @db.Decimal(10, 8)
+  latitude     Decimal  @db.Decimal(15, 8)
+  longitude    Decimal  @db.Decimal(15, 8)
   native       String?
   timezone     String?
   translations Json?

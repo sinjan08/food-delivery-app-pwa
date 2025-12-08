@@ -143,3 +143,70 @@ export const logout = async (req: Request, res: Response) => {
     });
   }
 }
+
+
+export const me = async (req: Request, res: Response) => {
+  try {
+    logger.debug('Me controller called');
+    const user = (req as any).user;
+
+    const rsult = await authService.getLoggedInUser(user.id);
+
+    sendResponse(res, {
+      success: true,
+      status: HTTP_STATUS.OK,
+      message: 'Fetched logged in user successfully',
+      data: rsult,
+    });
+  } catch (error: any) {
+    logger.error('Error in me controller:', error);
+    sendResponse(res, {
+      success: false,
+      status: HTTP_STATUS.SERVER_ERROR,
+      message: 'An error occurred: ' + error.message,
+    });
+  }
+}
+
+export const sendVerificationEmail = async (req: Request, res: Response) => {
+  try {
+    logger.debug('Send verification email controller called');
+    const user = (req as any).user;
+    const result = await authService.sendVerificationMail(user.id);
+    sendResponse(res, {
+      success: true,
+      status: HTTP_STATUS.OK,
+      message: 'Verification email sent successfully',
+      data: result,
+    });
+  } catch (error: any) {
+    logger.error('Error in sendVerificationEmail controller:', error);
+    sendResponse(res, {
+      success: false,
+      status: HTTP_STATUS.SERVER_ERROR,
+      message: 'An error occurred: ' + error.message,
+    });
+  }
+}
+
+
+export const verifyEmailLink = async (req: Request, res: Response) => {
+  try {
+    logger.debug('Verify email link controller called');
+    const { token, uid } = req.query;
+    const result = await authService.verifyEmailLink(token, uid);
+    sendResponse(res, {
+      success: true,
+      status: HTTP_STATUS.OK,
+      message: 'Email verified successfully',
+      data: result,
+    });
+  } catch (error: any) {
+    logger.error('Error in verifyEmailLink controller:', error);
+    sendResponse(res, {
+      success: false,
+      status: HTTP_STATUS.SERVER_ERROR,
+      message: 'An error occurred: ' + error.message,
+    });
+  }
+}

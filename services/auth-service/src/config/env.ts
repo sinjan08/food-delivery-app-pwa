@@ -11,4 +11,9 @@ export const env = {
   GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL || "",
   LOG_LEVEL: process.env.LOG_LEVEL || "info",
   VERSION: process.env.VERSION || "1",
+  MAIL_USER: process.env.MAIL_USER || "",
+  MAIL_PASS: process.env.MAIL_PASS || "",
+  MAIL_FROM: process.env.MAIL_FROM || "",
+  EMAIL_VERIFICATION_TOKEN_EXPIRATION_TIME: process.env.EMAIL_VERIFICATION_TOKEN_EXPIRATION_TIME || "1 hour",
+  FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:5173",
 };

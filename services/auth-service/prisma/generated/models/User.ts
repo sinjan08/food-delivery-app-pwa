@@ -55,6 +55,8 @@ export type UserMinAggregateOutputType = {
   updatedAt: Date | null
   isActive: boolean | null
   deletedAt: Date | null
+  emailVerifiedAt: Date | null
+  phoneVerifiedAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -72,6 +74,8 @@ export type UserMaxAggregateOutputType = {
   updatedAt: Date | null
   isActive: boolean | null
   deletedAt: Date | null
+  emailVerifiedAt: Date | null
+  phoneVerifiedAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -89,6 +93,8 @@ export type UserCountAggregateOutputType = {
   updatedAt: number
   isActive: number
   deletedAt: number
+  emailVerifiedAt: number
+  phoneVerifiedAt: number
   _all: number
 }
 
@@ -122,6 +128,8 @@ export type UserMinAggregateInputType = {
   updatedAt?: true
   isActive?: true
   deletedAt?: true
+  emailVerifiedAt?: true
+  phoneVerifiedAt?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -139,6 +147,8 @@ export type UserMaxAggregateInputType = {
   updatedAt?: true
   isActive?: true
   deletedAt?: true
+  emailVerifiedAt?: true
+  phoneVerifiedAt?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -156,6 +166,8 @@ export type UserCountAggregateInputType = {
   updatedAt?: true
   isActive?: true
   deletedAt?: true
+  emailVerifiedAt?: true
+  phoneVerifiedAt?: true
   _all?: true
 }
 
@@ -250,7 +262,7 @@ export type UserGroupByOutputType = {
   name: string
   email: string
   phone: string | null
-  password: string
+  password: string | null
   address: string | null
   zipCode: string | null
   countryId: number | null
@@ -260,6 +272,8 @@ export type UserGroupByOutputType = {
   updatedAt: Date
   isActive: boolean
   deletedAt: Date | null
+  emailVerifiedAt: Date | null
+  phoneVerifiedAt: Date | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -290,7 +304,7 @@ export type UserWhereInput = {
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   phone?: Prisma.StringNullableFilter<"User"> | string | null
-  password?: Prisma.StringFilter<"User"> | string
+  password?: Prisma.StringNullableFilter<"User"> | string | null
   address?: Prisma.StringNullableFilter<"User"> | string | null
   zipCode?: Prisma.StringNullableFilter<"User"> | string | null
   countryId?: Prisma.IntNullableFilter<"User"> | number | null
@@ -300,6 +314,8 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isActive?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  emailVerifiedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  phoneVerifiedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   country?: Prisma.XOR<Prisma.CountryNullableScalarRelationFilter, Prisma.CountryWhereInput> | null
   state?: Prisma.XOR<Prisma.StateNullableScalarRelationFilter, Prisma.StateWhereInput> | null
   city?: Prisma.XOR<Prisma.CityNullableScalarRelationFilter, Prisma.CityWhereInput> | null
@@ -314,7 +330,7 @@ export type UserOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  password?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   zipCode?: Prisma.SortOrderInput | Prisma.SortOrder
   countryId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -324,6 +340,8 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   country?: Prisma.CountryOrderByWithRelationInput
   state?: Prisma.StateOrderByWithRelationInput
   city?: Prisma.CityOrderByWithRelationInput
@@ -341,7 +359,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringFilter<"User"> | string
+  password?: Prisma.StringNullableFilter<"User"> | string | null
   address?: Prisma.StringNullableFilter<"User"> | string | null
   zipCode?: Prisma.StringNullableFilter<"User"> | string | null
   countryId?: Prisma.IntNullableFilter<"User"> | number | null
@@ -351,6 +369,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isActive?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  emailVerifiedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  phoneVerifiedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   country?: Prisma.XOR<Prisma.CountryNullableScalarRelationFilter, Prisma.CountryWhereInput> | null
   state?: Prisma.XOR<Prisma.StateNullableScalarRelationFilter, Prisma.StateWhereInput> | null
   city?: Prisma.XOR<Prisma.CityNullableScalarRelationFilter, Prisma.CityWhereInput> | null
@@ -365,7 +385,7 @@ export type UserOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  password?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   zipCode?: Prisma.SortOrderInput | Prisma.SortOrder
   countryId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -375,6 +395,8 @@ export type UserOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  phoneVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -390,7 +412,7 @@ export type UserScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  password?: Prisma.StringWithAggregatesFilter<"User"> | string
+  password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   zipCode?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   countryId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
@@ -400,19 +422,23 @@ export type UserScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  emailVerifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  phoneVerifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
 
 export type UserCreateInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   country?: Prisma.CountryCreateNestedOneWithoutUsersInput
   state?: Prisma.StateCreateNestedOneWithoutUsersInput
   city?: Prisma.CityCreateNestedOneWithoutUsersInput
@@ -427,7 +453,7 @@ export type UserUncheckedCreateInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -437,6 +463,8 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
@@ -447,13 +475,15 @@ export type UserUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   country?: Prisma.CountryUpdateOneWithoutUsersNestedInput
   state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   city?: Prisma.CityUpdateOneWithoutUsersNestedInput
@@ -468,7 +498,7 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -478,6 +508,8 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
@@ -489,7 +521,7 @@ export type UserCreateManyInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -499,19 +531,23 @@ export type UserCreateManyInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
 }
 
 export type UserUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -519,7 +555,7 @@ export type UserUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -529,6 +565,8 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -546,6 +584,8 @@ export type UserCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  emailVerifiedAt?: Prisma.SortOrder
+  phoneVerifiedAt?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -570,6 +610,8 @@ export type UserMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  emailVerifiedAt?: Prisma.SortOrder
+  phoneVerifiedAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -587,6 +629,8 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  emailVerifiedAt?: Prisma.SortOrder
+  phoneVerifiedAt?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -833,13 +877,15 @@ export type UserCreateWithoutUserRolesInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   country?: Prisma.CountryCreateNestedOneWithoutUsersInput
   state?: Prisma.StateCreateNestedOneWithoutUsersInput
   city?: Prisma.CityCreateNestedOneWithoutUsersInput
@@ -853,7 +899,7 @@ export type UserUncheckedCreateWithoutUserRolesInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -863,6 +909,8 @@ export type UserUncheckedCreateWithoutUserRolesInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
   verificationTokens?: Prisma.VerificationTokenUncheckedCreateNestedManyWithoutUserInput
@@ -888,13 +936,15 @@ export type UserUpdateWithoutUserRolesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   country?: Prisma.CountryUpdateOneWithoutUsersNestedInput
   state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   city?: Prisma.CityUpdateOneWithoutUsersNestedInput
@@ -908,7 +958,7 @@ export type UserUncheckedUpdateWithoutUserRolesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -918,6 +968,8 @@ export type UserUncheckedUpdateWithoutUserRolesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
   verificationTokens?: Prisma.VerificationTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -927,13 +979,15 @@ export type UserCreateWithoutRefreshTokensInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   country?: Prisma.CountryCreateNestedOneWithoutUsersInput
   state?: Prisma.StateCreateNestedOneWithoutUsersInput
   city?: Prisma.CityCreateNestedOneWithoutUsersInput
@@ -947,7 +1001,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -957,6 +1011,8 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
   verificationTokens?: Prisma.VerificationTokenUncheckedCreateNestedManyWithoutUserInput
@@ -982,13 +1038,15 @@ export type UserUpdateWithoutRefreshTokensInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   country?: Prisma.CountryUpdateOneWithoutUsersNestedInput
   state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   city?: Prisma.CityUpdateOneWithoutUsersNestedInput
@@ -1002,7 +1060,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1012,6 +1070,8 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
   verificationTokens?: Prisma.VerificationTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1021,13 +1081,15 @@ export type UserCreateWithoutOauthAccountsInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   country?: Prisma.CountryCreateNestedOneWithoutUsersInput
   state?: Prisma.StateCreateNestedOneWithoutUsersInput
   city?: Prisma.CityCreateNestedOneWithoutUsersInput
@@ -1041,7 +1103,7 @@ export type UserUncheckedCreateWithoutOauthAccountsInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -1051,6 +1113,8 @@ export type UserUncheckedCreateWithoutOauthAccountsInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   verificationTokens?: Prisma.VerificationTokenUncheckedCreateNestedManyWithoutUserInput
@@ -1076,13 +1140,15 @@ export type UserUpdateWithoutOauthAccountsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   country?: Prisma.CountryUpdateOneWithoutUsersNestedInput
   state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   city?: Prisma.CityUpdateOneWithoutUsersNestedInput
@@ -1096,7 +1162,7 @@ export type UserUncheckedUpdateWithoutOauthAccountsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1106,6 +1172,8 @@ export type UserUncheckedUpdateWithoutOauthAccountsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   verificationTokens?: Prisma.VerificationTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -1115,13 +1183,15 @@ export type UserCreateWithoutVerificationTokensInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   country?: Prisma.CountryCreateNestedOneWithoutUsersInput
   state?: Prisma.StateCreateNestedOneWithoutUsersInput
   city?: Prisma.CityCreateNestedOneWithoutUsersInput
@@ -1135,7 +1205,7 @@ export type UserUncheckedCreateWithoutVerificationTokensInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -1145,6 +1215,8 @@ export type UserUncheckedCreateWithoutVerificationTokensInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
@@ -1170,13 +1242,15 @@ export type UserUpdateWithoutVerificationTokensInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   country?: Prisma.CountryUpdateOneWithoutUsersNestedInput
   state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   city?: Prisma.CityUpdateOneWithoutUsersNestedInput
@@ -1190,7 +1264,7 @@ export type UserUncheckedUpdateWithoutVerificationTokensInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1200,6 +1274,8 @@ export type UserUncheckedUpdateWithoutVerificationTokensInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1209,13 +1285,15 @@ export type UserCreateWithoutCountryInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   state?: Prisma.StateCreateNestedOneWithoutUsersInput
   city?: Prisma.CityCreateNestedOneWithoutUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
@@ -1229,7 +1307,7 @@ export type UserUncheckedCreateWithoutCountryInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   stateId?: number | null
@@ -1238,6 +1316,8 @@ export type UserUncheckedCreateWithoutCountryInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
@@ -1278,7 +1358,7 @@ export type UserScalarWhereInput = {
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   phone?: Prisma.StringNullableFilter<"User"> | string | null
-  password?: Prisma.StringFilter<"User"> | string
+  password?: Prisma.StringNullableFilter<"User"> | string | null
   address?: Prisma.StringNullableFilter<"User"> | string | null
   zipCode?: Prisma.StringNullableFilter<"User"> | string | null
   countryId?: Prisma.IntNullableFilter<"User"> | number | null
@@ -1288,19 +1368,23 @@ export type UserScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isActive?: Prisma.BoolFilter<"User"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  emailVerifiedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  phoneVerifiedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
 }
 
 export type UserCreateWithoutStateInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   country?: Prisma.CountryCreateNestedOneWithoutUsersInput
   city?: Prisma.CityCreateNestedOneWithoutUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
@@ -1314,7 +1398,7 @@ export type UserUncheckedCreateWithoutStateInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -1323,6 +1407,8 @@ export type UserUncheckedCreateWithoutStateInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
@@ -1359,13 +1445,15 @@ export type UserCreateWithoutCityInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   country?: Prisma.CountryCreateNestedOneWithoutUsersInput
   state?: Prisma.StateCreateNestedOneWithoutUsersInput
   userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
@@ -1379,7 +1467,7 @@ export type UserUncheckedCreateWithoutCityInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -1388,6 +1476,8 @@ export type UserUncheckedCreateWithoutCityInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
   userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
@@ -1425,7 +1515,7 @@ export type UserCreateManyCountryInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   stateId?: number | null
@@ -1434,19 +1524,23 @@ export type UserCreateManyCountryInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
 }
 
 export type UserUpdateWithoutCountryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   city?: Prisma.CityUpdateOneWithoutUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
@@ -1460,7 +1554,7 @@ export type UserUncheckedUpdateWithoutCountryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1469,6 +1563,8 @@ export type UserUncheckedUpdateWithoutCountryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1480,7 +1576,7 @@ export type UserUncheckedUpdateManyWithoutCountryInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1489,6 +1585,8 @@ export type UserUncheckedUpdateManyWithoutCountryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserCreateManyStateInput = {
@@ -1496,7 +1594,7 @@ export type UserCreateManyStateInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -1505,19 +1603,23 @@ export type UserCreateManyStateInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
 }
 
 export type UserUpdateWithoutStateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   country?: Prisma.CountryUpdateOneWithoutUsersNestedInput
   city?: Prisma.CityUpdateOneWithoutUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
@@ -1531,7 +1633,7 @@ export type UserUncheckedUpdateWithoutStateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1540,6 +1642,8 @@ export type UserUncheckedUpdateWithoutStateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1551,7 +1655,7 @@ export type UserUncheckedUpdateManyWithoutStateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1560,6 +1664,8 @@ export type UserUncheckedUpdateManyWithoutStateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserCreateManyCityInput = {
@@ -1567,7 +1673,7 @@ export type UserCreateManyCityInput = {
   name: string
   email: string
   phone?: string | null
-  password: string
+  password?: string | null
   address?: string | null
   zipCode?: string | null
   countryId?: number | null
@@ -1576,19 +1682,23 @@ export type UserCreateManyCityInput = {
   updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
 }
 
 export type UserUpdateWithoutCityInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   country?: Prisma.CountryUpdateOneWithoutUsersNestedInput
   state?: Prisma.StateUpdateOneWithoutUsersNestedInput
   userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
@@ -1602,7 +1712,7 @@ export type UserUncheckedUpdateWithoutCityInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1611,6 +1721,8 @@ export type UserUncheckedUpdateWithoutCityInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
@@ -1622,7 +1734,7 @@ export type UserUncheckedUpdateManyWithoutCityInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1631,6 +1743,8 @@ export type UserUncheckedUpdateManyWithoutCityInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1706,6 +1820,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   isActive?: boolean
   deletedAt?: boolean
+  emailVerifiedAt?: boolean
+  phoneVerifiedAt?: boolean
   country?: boolean | Prisma.User$countryArgs<ExtArgs>
   state?: boolean | Prisma.User$stateArgs<ExtArgs>
   city?: boolean | Prisma.User$cityArgs<ExtArgs>
@@ -1731,6 +1847,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   isActive?: boolean
   deletedAt?: boolean
+  emailVerifiedAt?: boolean
+  phoneVerifiedAt?: boolean
   country?: boolean | Prisma.User$countryArgs<ExtArgs>
   state?: boolean | Prisma.User$stateArgs<ExtArgs>
   city?: boolean | Prisma.User$cityArgs<ExtArgs>
@@ -1751,6 +1869,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   isActive?: boolean
   deletedAt?: boolean
+  emailVerifiedAt?: boolean
+  phoneVerifiedAt?: boolean
   country?: boolean | Prisma.User$countryArgs<ExtArgs>
   state?: boolean | Prisma.User$stateArgs<ExtArgs>
   city?: boolean | Prisma.User$cityArgs<ExtArgs>
@@ -1771,9 +1891,11 @@ export type UserSelectScalar = {
   updatedAt?: boolean
   isActive?: boolean
   deletedAt?: boolean
+  emailVerifiedAt?: boolean
+  phoneVerifiedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "address" | "zipCode" | "countryId" | "stateId" | "cityId" | "createdAt" | "updatedAt" | "isActive" | "deletedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "address" | "zipCode" | "countryId" | "stateId" | "cityId" | "createdAt" | "updatedAt" | "isActive" | "deletedAt" | "emailVerifiedAt" | "phoneVerifiedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   country?: boolean | Prisma.User$countryArgs<ExtArgs>
   state?: boolean | Prisma.User$stateArgs<ExtArgs>
@@ -1811,7 +1933,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     email: string
     phone: string | null
-    password: string
+    password: string | null
     address: string | null
     zipCode: string | null
     countryId: number | null
@@ -1821,6 +1943,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     isActive: boolean
     deletedAt: Date | null
+    emailVerifiedAt: Date | null
+    phoneVerifiedAt: Date | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -2265,6 +2389,8 @@ export interface UserFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>
   readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly emailVerifiedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly phoneVerifiedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 
