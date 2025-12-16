@@ -1,5 +1,5 @@
 import { env } from "@/config/env";
-import { verifyEmailTemplate } from "@/templates/verifyEmail.template";
+import { forgotPasswordTemplate, verifyEmailTemplate } from "@/templates/verifyEmail.template";
 import { sendMail } from "@/utils/mailsend";
 import bcrypt from "bcrypt";
 import { randomBytes } from "node:crypto";
@@ -172,39 +172,45 @@ class AuthService {
   async login(email: string, password: string, phone?: string) {
     try {
       logger.info(`Attempting login for email: ${email}`);
-      // checking if user exists
+
+      // 1. Check user exists
       const user = await prisma.user.findUnique({ where: { email } });
       if (!user) {
         logger.warn('User not found');
         throw new Error('User not found');
       }
 
-      // verifying password
+      // 2. Check if password login is allowed
+      if (!user.password) {
+        logger.warn('Password login not allowed for this user');
+        throw new Error('This account does not support password login');
+      }
+
+      // 3. Verify password
       const validPassword = await bcrypt.compare(password, user.password);
       if (!validPassword) {
         logger.warn('Invalid password');
         throw new Error('Invalid password');
       }
 
-      // fetching user roles
+      // 4. Fetch roles
       const userRoles = await prisma.userRole.findMany({
         where: { userId: user.id },
-        include: { role: true }
+        include: { role: true },
       });
+
       const roles = userRoles.map(ur => ur.role.name);
 
-      // creating access token
+      // 5. Create access token
       const accessToken = jwt.sign({
         id: user.id,
         email: user.email,
-        phone: user.phone || '',
-        roles
-      })
-      logger.debug(`Access token created for user ID ${user.id}`);
+        phone: user.phone ?? '',
+        roles,
+      });
 
-      // creating refresh token
+      // 6. Create refresh token
       const refreshToken = await this.createRefreshToken(user.id);
-      logger.debug(`Refresh token created for user ID ${user.id}`);
 
       return {
         user: {
@@ -212,16 +218,17 @@ class AuthService {
           name: user.name,
           email: user.email,
           phone: user.phone,
-          role: userRoles[0].role
+          role: userRoles[0]?.role ?? null,
         },
         accessToken,
-        refreshToken: refreshToken.token
+        refreshToken: refreshToken.token,
       };
     } catch (error: any) {
       logger.error('Error during login:', error);
-      throw new Error('An error occurred during login: ' + error.message);
+      throw new Error(error.message || 'An error occurred during login');
     }
   }
+
 
   async adminCreateUser(input: AdminCreateUserInput) {
     try {
@@ -628,6 +635,96 @@ class AuthService {
       throw new Error('An error occurred while verifying email link: ' + error.message);
     }
   }
+
+  async forgotPassword(email: string) {
+    try {
+      logger.debug(`Attempting password reset for email: ${email}`);
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      const rawToken = crypto.randomUUID();
+      const hashed = await bcrypt.hash(rawToken, 10);
+
+      const expires = new Date();
+      expires.setHours(expires.getHours() + 1);
+
+      await prisma.verificationToken.create({
+        data: {
+          token: hashed,
+          type: "FORGOT_PASSWORD",
+          expiresAt: expires,
+          userId: user.id,
+        },
+      });
+
+      const link = `${env.FRONTEND_URL}/reset-password?token=${rawToken}&uid=${user.id}`;
+
+      const mailBody = await forgotPasswordTemplate(user.name, link);
+      // send email
+      const info = await sendMail(
+        user.email,
+        `Reset your password for ${env.APP_NAME}`,
+        mailBody
+      );
+
+      logger.info(`Password reset email sent to ${user.email}: ${info.messageId}`);
+
+      return info;
+    } catch (error: any) {
+      logger.error('Error during password reset:', error);
+      throw new Error('An error occurred during password reset: ' + error.message);
+    }
+  }
+
+  async resetPassword(token: string, uid: any, password: string) {
+    try {
+      logger.debug(`Attempting password reset for uid: ${uid}`);
+
+      const userId = parseInt(uid, 10);
+
+      const record = await prisma.verificationToken.findFirst({
+        where: {
+          userId,
+          type: 'FORGOT_PASSWORD',
+        },
+      });
+
+      if (!record) {
+        throw new Error('Invalid or expired verification token');
+      }
+
+      const isValid = await bcrypt.compare(token, record.token);
+      if (!isValid) {
+        throw new Error('Invalid or expired verification token');
+      }
+
+      if (record.expiresAt < new Date()) {
+        throw new Error('Verification token has expired');
+      }
+
+      // hash new password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // delete all forgot-password tokens for user
+      await prisma.verificationToken.deleteMany({
+        where: { userId, type: 'FORGOT_PASSWORD' },
+      });
+
+      // update password
+      await prisma.user.update({
+        where: { id: userId },
+        data: { password: hashedPassword },
+      });
+
+      return true;
+    } catch (error: any) {
+      logger.error('Error during password reset:', error);
+      throw new Error(error.message || 'Password reset failed');
+    }
+  }
+
 }
 
 export default new AuthService();

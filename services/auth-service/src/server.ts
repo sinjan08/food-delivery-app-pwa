@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
   res.send(env.APP_NAME + " Running 🚀");
 });
 
-app.use(`/api/v${version}/auth`, authRoutes);
+app.use(`/auth`, authRoutes);
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/docs-json", (req, res) => res.json(swaggerSpec));

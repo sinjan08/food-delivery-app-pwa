@@ -194,7 +194,7 @@ export const verifyEmailLink = async (req: Request, res: Response) => {
   try {
     logger.debug('Verify email link controller called');
     const { token, uid } = req.query;
-    const result = await authService.verifyEmailLink(token, uid);
+    const result = await authService.verifyEmailLink(token as any, uid);
     sendResponse(res, {
       success: true,
       status: HTTP_STATUS.OK,
@@ -210,3 +210,58 @@ export const verifyEmailLink = async (req: Request, res: Response) => {
     });
   }
 }
+
+
+export const forgotPassword = async (req: Request, res: Response) => {
+  try {
+    logger.debug('Forgot password controller called');
+    const { email } = req.body;
+    const result = await authService.forgotPassword(email);
+    sendResponse(res, {
+      success: true,
+      status: HTTP_STATUS.OK,
+      message: 'Password reset link sent successfully',
+      data: result,
+    });
+  } catch (error: any) {
+    logger.error('Error in forgotPassword controller:', error);
+    sendResponse(res, {
+      success: false,
+      status: HTTP_STATUS.SERVER_ERROR,
+      message: 'An error occurred: ' + error.message,
+    });
+  }
+}
+
+
+export const resetPassword = async (req: Request, res: Response) => {
+  try {
+    logger.debug('Reset password controller called');
+
+    const { token, uid, password } = req.body;
+
+    if (!token || !uid || !password) {
+      return sendResponse(res, {
+        success: false,
+        status: HTTP_STATUS.BAD_REQUEST,
+        message: 'Token, user ID, and new password are required',
+      });
+    }
+
+    await authService.resetPassword(token, uid, password);
+
+    return sendResponse(res, {
+      success: true,
+      status: HTTP_STATUS.OK,
+      message: 'Password reset successfully',
+    });
+  } catch (error: any) {
+    logger.error('Error in resetPassword controller:', error);
+
+    return sendResponse(res, {
+      success: false,
+      status: HTTP_STATUS.SERVER_ERROR,
+      message: error.message || 'An error occurred while resetting password',
+    });
+  }
+};

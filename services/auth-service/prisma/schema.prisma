@@ -1,10 +1,10 @@
-datasource db {
-  provider = "postgresql"
-}
-
 generator client {
   provider = "prisma-client"
   output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
 }
 
 model User {
@@ -56,10 +56,10 @@ model Role {
 
 model UserRole {
   id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
-  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
   roleId Int
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, roleId])
   @@index([roleId])
@@ -68,10 +68,10 @@ model UserRole {
 model RefreshToken {
   id        Int      @id @default(autoincrement())
   token     String   @unique
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   expiresAt DateTime
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -80,9 +80,9 @@ model OAuthAccount {
   id             Int      @id @default(autoincrement())
   provider       String
   providerUserId String
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         Int
   createdAt      DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerUserId])
   @@index([userId])
@@ -91,18 +91,11 @@ model OAuthAccount {
 model VerificationToken {
   id        Int              @id @default(autoincrement())
   token     String           @unique
-  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   type      VerificationType
   expiresAt DateTime
   createdAt DateTime         @default(now())
-}
-
-enum VerificationType {
-  EMAIL
-  PHONE
-  FORGOT_PASSWORD
-  VERIFY_ACCOUNT
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Country {
@@ -131,10 +124,9 @@ model Country {
   flag           Boolean  @default(true)
   createdAt      DateTime @default(now()) @map("created_at")
   updatedAt      DateTime @default(now()) @updatedAt @map("updated_at")
-
-  states State[]
-  cities City[]
-  users  User[] // 🔥 added for reverse lookup
+  users          User[]
+  cities         City[]
+  states         State[]
 
   @@map("countries")
 }
@@ -158,12 +150,10 @@ model State {
   flag         Boolean  @default(true)
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
-
-  country   Country @relation(fields: [countryId], references: [id])
-  countryId Int     @map("country_id")
-
-  cities City[]
-  users  User[] // 🔥 reverse relation
+  countryId    Int      @map("country_id")
+  users        User[]
+  cities       City[]
+  country      Country  @relation(fields: [countryId], references: [id])
 
   @@index([countryId])
   @@map("states")
@@ -183,15 +173,20 @@ model City {
   flag         Boolean  @default(true)
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
-
-  state     State   @relation(fields: [stateId], references: [id])
-  stateId   Int     @map("state_id")
-  country   Country @relation(fields: [countryId], references: [id])
-  countryId Int     @map("country_id")
-
-  users User[] // 🔥 reverse relation
+  stateId      Int      @map("state_id")
+  countryId    Int      @map("country_id")
+  users        User[]
+  country      Country  @relation(fields: [countryId], references: [id])
+  state        State    @relation(fields: [stateId], references: [id])
 
   @@index([stateId])
   @@index([countryId])
   @@map("cities")
+}
+
+enum VerificationType {
+  EMAIL
+  PHONE
+  FORGOT_PASSWORD
+  VERIFY_ACCOUNT
 }

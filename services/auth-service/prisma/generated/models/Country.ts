@@ -384,9 +384,9 @@ export type CountryWhereInput = {
   flag?: Prisma.BoolFilter<"Country"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Country"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Country"> | Date | string
-  states?: Prisma.StateListRelationFilter
-  cities?: Prisma.CityListRelationFilter
   users?: Prisma.UserListRelationFilter
+  cities?: Prisma.CityListRelationFilter
+  states?: Prisma.StateListRelationFilter
 }
 
 export type CountryOrderByWithRelationInput = {
@@ -415,9 +415,9 @@ export type CountryOrderByWithRelationInput = {
   flag?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  states?: Prisma.StateOrderByRelationAggregateInput
-  cities?: Prisma.CityOrderByRelationAggregateInput
   users?: Prisma.UserOrderByRelationAggregateInput
+  cities?: Prisma.CityOrderByRelationAggregateInput
+  states?: Prisma.StateOrderByRelationAggregateInput
 }
 
 export type CountryWhereUniqueInput = Prisma.AtLeast<{
@@ -449,9 +449,9 @@ export type CountryWhereUniqueInput = Prisma.AtLeast<{
   flag?: Prisma.BoolFilter<"Country"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Country"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Country"> | Date | string
-  states?: Prisma.StateListRelationFilter
-  cities?: Prisma.CityListRelationFilter
   users?: Prisma.UserListRelationFilter
+  cities?: Prisma.CityListRelationFilter
+  states?: Prisma.StateListRelationFilter
 }, "id">
 
 export type CountryOrderByWithAggregationInput = {
@@ -543,9 +543,9 @@ export type CountryCreateInput = {
   flag?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  states?: Prisma.StateCreateNestedManyWithoutCountryInput
-  cities?: Prisma.CityCreateNestedManyWithoutCountryInput
   users?: Prisma.UserCreateNestedManyWithoutCountryInput
+  cities?: Prisma.CityCreateNestedManyWithoutCountryInput
+  states?: Prisma.StateCreateNestedManyWithoutCountryInput
 }
 
 export type CountryUncheckedCreateInput = {
@@ -574,9 +574,9 @@ export type CountryUncheckedCreateInput = {
   flag?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  states?: Prisma.StateUncheckedCreateNestedManyWithoutCountryInput
-  cities?: Prisma.CityUncheckedCreateNestedManyWithoutCountryInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCountryInput
+  cities?: Prisma.CityUncheckedCreateNestedManyWithoutCountryInput
+  states?: Prisma.StateUncheckedCreateNestedManyWithoutCountryInput
 }
 
 export type CountryUpdateInput = {
@@ -604,9 +604,9 @@ export type CountryUpdateInput = {
   flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  states?: Prisma.StateUpdateManyWithoutCountryNestedInput
-  cities?: Prisma.CityUpdateManyWithoutCountryNestedInput
   users?: Prisma.UserUpdateManyWithoutCountryNestedInput
+  cities?: Prisma.CityUpdateManyWithoutCountryNestedInput
+  states?: Prisma.StateUpdateManyWithoutCountryNestedInput
 }
 
 export type CountryUncheckedUpdateInput = {
@@ -635,9 +635,9 @@ export type CountryUncheckedUpdateInput = {
   flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  states?: Prisma.StateUncheckedUpdateManyWithoutCountryNestedInput
-  cities?: Prisma.CityUncheckedUpdateManyWithoutCountryNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutCountryNestedInput
+  cities?: Prisma.CityUncheckedUpdateManyWithoutCountryNestedInput
+  states?: Prisma.StateUncheckedUpdateManyWithoutCountryNestedInput
 }
 
 export type CountryCreateManyInput = {
@@ -914,8 +914,8 @@ export type CountryCreateWithoutUsersInput = {
   flag?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  states?: Prisma.StateCreateNestedManyWithoutCountryInput
   cities?: Prisma.CityCreateNestedManyWithoutCountryInput
+  states?: Prisma.StateCreateNestedManyWithoutCountryInput
 }
 
 export type CountryUncheckedCreateWithoutUsersInput = {
@@ -944,8 +944,8 @@ export type CountryUncheckedCreateWithoutUsersInput = {
   flag?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  states?: Prisma.StateUncheckedCreateNestedManyWithoutCountryInput
   cities?: Prisma.CityUncheckedCreateNestedManyWithoutCountryInput
+  states?: Prisma.StateUncheckedCreateNestedManyWithoutCountryInput
 }
 
 export type CountryCreateOrConnectWithoutUsersInput = {
@@ -989,8 +989,8 @@ export type CountryUpdateWithoutUsersInput = {
   flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  states?: Prisma.StateUpdateManyWithoutCountryNestedInput
   cities?: Prisma.CityUpdateManyWithoutCountryNestedInput
+  states?: Prisma.StateUpdateManyWithoutCountryNestedInput
 }
 
 export type CountryUncheckedUpdateWithoutUsersInput = {
@@ -1019,8 +1019,8 @@ export type CountryUncheckedUpdateWithoutUsersInput = {
   flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  states?: Prisma.StateUncheckedUpdateManyWithoutCountryNestedInput
   cities?: Prisma.CityUncheckedUpdateManyWithoutCountryNestedInput
+  states?: Prisma.StateUncheckedUpdateManyWithoutCountryNestedInput
 }
 
 export type CountryCreateWithoutStatesInput = {
@@ -1048,8 +1048,8 @@ export type CountryCreateWithoutStatesInput = {
   flag?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  cities?: Prisma.CityCreateNestedManyWithoutCountryInput
   users?: Prisma.UserCreateNestedManyWithoutCountryInput
+  cities?: Prisma.CityCreateNestedManyWithoutCountryInput
 }
 
 export type CountryUncheckedCreateWithoutStatesInput = {
@@ -1078,8 +1078,8 @@ export type CountryUncheckedCreateWithoutStatesInput = {
   flag?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  cities?: Prisma.CityUncheckedCreateNestedManyWithoutCountryInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCountryInput
+  cities?: Prisma.CityUncheckedCreateNestedManyWithoutCountryInput
 }
 
 export type CountryCreateOrConnectWithoutStatesInput = {
@@ -1123,8 +1123,8 @@ export type CountryUpdateWithoutStatesInput = {
   flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cities?: Prisma.CityUpdateManyWithoutCountryNestedInput
   users?: Prisma.UserUpdateManyWithoutCountryNestedInput
+  cities?: Prisma.CityUpdateManyWithoutCountryNestedInput
 }
 
 export type CountryUncheckedUpdateWithoutStatesInput = {
@@ -1153,8 +1153,8 @@ export type CountryUncheckedUpdateWithoutStatesInput = {
   flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cities?: Prisma.CityUncheckedUpdateManyWithoutCountryNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutCountryNestedInput
+  cities?: Prisma.CityUncheckedUpdateManyWithoutCountryNestedInput
 }
 
 export type CountryCreateWithoutCitiesInput = {
@@ -1182,8 +1182,8 @@ export type CountryCreateWithoutCitiesInput = {
   flag?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  states?: Prisma.StateCreateNestedManyWithoutCountryInput
   users?: Prisma.UserCreateNestedManyWithoutCountryInput
+  states?: Prisma.StateCreateNestedManyWithoutCountryInput
 }
 
 export type CountryUncheckedCreateWithoutCitiesInput = {
@@ -1212,8 +1212,8 @@ export type CountryUncheckedCreateWithoutCitiesInput = {
   flag?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  states?: Prisma.StateUncheckedCreateNestedManyWithoutCountryInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutCountryInput
+  states?: Prisma.StateUncheckedCreateNestedManyWithoutCountryInput
 }
 
 export type CountryCreateOrConnectWithoutCitiesInput = {
@@ -1257,8 +1257,8 @@ export type CountryUpdateWithoutCitiesInput = {
   flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  states?: Prisma.StateUpdateManyWithoutCountryNestedInput
   users?: Prisma.UserUpdateManyWithoutCountryNestedInput
+  states?: Prisma.StateUpdateManyWithoutCountryNestedInput
 }
 
 export type CountryUncheckedUpdateWithoutCitiesInput = {
@@ -1287,8 +1287,8 @@ export type CountryUncheckedUpdateWithoutCitiesInput = {
   flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  states?: Prisma.StateUncheckedUpdateManyWithoutCountryNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutCountryNestedInput
+  states?: Prisma.StateUncheckedUpdateManyWithoutCountryNestedInput
 }
 
 
@@ -1297,15 +1297,15 @@ export type CountryUncheckedUpdateWithoutCitiesInput = {
  */
 
 export type CountryCountOutputType = {
-  states: number
-  cities: number
   users: number
+  cities: number
+  states: number
 }
 
 export type CountryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  states?: boolean | CountryCountOutputTypeCountStatesArgs
-  cities?: boolean | CountryCountOutputTypeCountCitiesArgs
   users?: boolean | CountryCountOutputTypeCountUsersArgs
+  cities?: boolean | CountryCountOutputTypeCountCitiesArgs
+  states?: boolean | CountryCountOutputTypeCountStatesArgs
 }
 
 /**
@@ -1321,8 +1321,8 @@ export type CountryCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * CountryCountOutputType without action
  */
-export type CountryCountOutputTypeCountStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StateWhereInput
+export type CountryCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserWhereInput
 }
 
 /**
@@ -1335,8 +1335,8 @@ export type CountryCountOutputTypeCountCitiesArgs<ExtArgs extends runtime.Types.
 /**
  * CountryCountOutputType without action
  */
-export type CountryCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
+export type CountryCountOutputTypeCountStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StateWhereInput
 }
 
 
@@ -1366,9 +1366,9 @@ export type CountrySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   flag?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  states?: boolean | Prisma.Country$statesArgs<ExtArgs>
-  cities?: boolean | Prisma.Country$citiesArgs<ExtArgs>
   users?: boolean | Prisma.Country$usersArgs<ExtArgs>
+  cities?: boolean | Prisma.Country$citiesArgs<ExtArgs>
+  states?: boolean | Prisma.Country$statesArgs<ExtArgs>
   _count?: boolean | Prisma.CountryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["country"]>
 
@@ -1458,9 +1458,9 @@ export type CountrySelectScalar = {
 
 export type CountryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "iso3" | "numericCode" | "iso2" | "phonecode" | "capital" | "currency" | "currencyName" | "currencySymbol" | "tld" | "native" | "population" | "gdp" | "nationality" | "timezones" | "translations" | "latitude" | "longitude" | "emoji" | "emojiU" | "wikiDataId" | "flag" | "createdAt" | "updatedAt", ExtArgs["result"]["country"]>
 export type CountryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  states?: boolean | Prisma.Country$statesArgs<ExtArgs>
-  cities?: boolean | Prisma.Country$citiesArgs<ExtArgs>
   users?: boolean | Prisma.Country$usersArgs<ExtArgs>
+  cities?: boolean | Prisma.Country$citiesArgs<ExtArgs>
+  states?: boolean | Prisma.Country$statesArgs<ExtArgs>
   _count?: boolean | Prisma.CountryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CountryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1469,9 +1469,9 @@ export type CountryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $CountryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Country"
   objects: {
-    states: Prisma.$StatePayload<ExtArgs>[]
-    cities: Prisma.$CityPayload<ExtArgs>[]
     users: Prisma.$UserPayload<ExtArgs>[]
+    cities: Prisma.$CityPayload<ExtArgs>[]
+    states: Prisma.$StatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1893,9 +1893,9 @@ readonly fields: CountryFieldRefs;
  */
 export interface Prisma__CountryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  states<T extends Prisma.Country$statesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Country$statesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  cities<T extends Prisma.Country$citiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Country$citiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.Country$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Country$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cities<T extends Prisma.Country$citiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Country$citiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  states<T extends Prisma.Country$statesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Country$statesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2338,27 +2338,27 @@ export type CountryDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Country.states
+ * Country.users
  */
-export type Country$statesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Country$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the State
+   * Select specific fields to fetch from the User
    */
-  select?: Prisma.StateSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the State
+   * Omit specific fields from the User
    */
-  omit?: Prisma.StateOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StateInclude<ExtArgs> | null
-  where?: Prisma.StateWhereInput
-  orderBy?: Prisma.StateOrderByWithRelationInput | Prisma.StateOrderByWithRelationInput[]
-  cursor?: Prisma.StateWhereUniqueInput
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  cursor?: Prisma.UserWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.StateScalarFieldEnum | Prisma.StateScalarFieldEnum[]
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
 /**
@@ -2386,27 +2386,27 @@ export type Country$citiesArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Country.users
+ * Country.states
  */
-export type Country$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Country$statesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the User
+   * Select specific fields to fetch from the State
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.StateSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the User
+   * Omit specific fields from the State
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.StateOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
-  cursor?: Prisma.UserWhereUniqueInput
+  include?: Prisma.StateInclude<ExtArgs> | null
+  where?: Prisma.StateWhereInput
+  orderBy?: Prisma.StateOrderByWithRelationInput | Prisma.StateOrderByWithRelationInput[]
+  cursor?: Prisma.StateWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
+  distinct?: Prisma.StateScalarFieldEnum | Prisma.StateScalarFieldEnum[]
 }
 
 /**

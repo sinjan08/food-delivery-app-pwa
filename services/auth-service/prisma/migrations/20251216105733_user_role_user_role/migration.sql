@@ -7,7 +7,7 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT,
-    "password" TEXT NOT NULL,
+    "password" TEXT,
     "address" TEXT,
     "zipCode" TEXT,
     "countryId" INTEGER,
@@ -17,6 +17,8 @@ CREATE TABLE "User" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "deletedAt" TIMESTAMP(3),
+    "emailVerifiedAt" TIMESTAMP(3),
+    "phoneVerifiedAt" TIMESTAMP(3),
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -93,8 +95,8 @@ CREATE TABLE "countries" (
     "nationality" TEXT,
     "timezones" JSONB,
     "translations" JSONB,
-    "latitude" DECIMAL(10,8),
-    "longitude" DECIMAL(11,8),
+    "latitude" DECIMAL(15,8),
+    "longitude" DECIMAL(15,8),
     "emoji" TEXT,
     "emojiU" TEXT,
     "wikiDataId" TEXT,
@@ -117,8 +119,8 @@ CREATE TABLE "states" (
     "level" INTEGER,
     "parent_id" INTEGER,
     "native" TEXT,
-    "latitude" DECIMAL(10,8),
-    "longitude" DECIMAL(11,8),
+    "latitude" DECIMAL(15,8),
+    "longitude" DECIMAL(15,8),
     "timezone" TEXT,
     "translations" JSONB,
     "wikiDataId" TEXT,
@@ -136,8 +138,8 @@ CREATE TABLE "cities" (
     "name" TEXT NOT NULL,
     "state_code" TEXT NOT NULL,
     "country_code" TEXT NOT NULL,
-    "latitude" DECIMAL(10,8) NOT NULL,
-    "longitude" DECIMAL(10,8) NOT NULL,
+    "latitude" DECIMAL(15,8) NOT NULL,
+    "longitude" DECIMAL(15,8) NOT NULL,
     "native" TEXT,
     "timezone" TEXT,
     "translations" JSONB,
@@ -218,10 +220,10 @@ ALTER TABLE "User" ADD CONSTRAINT "User_stateId_fkey" FOREIGN KEY ("stateId") RE
 ALTER TABLE "User" ADD CONSTRAINT "User_cityId_fkey" FOREIGN KEY ("cityId") REFERENCES "cities"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRole" ADD CONSTRAINT "UserRole_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "UserRole" ADD CONSTRAINT "UserRole_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserRole" ADD CONSTRAINT "UserRole_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "UserRole" ADD CONSTRAINT "UserRole_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "RefreshToken" ADD CONSTRAINT "RefreshToken_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -236,7 +238,7 @@ ALTER TABLE "VerificationToken" ADD CONSTRAINT "VerificationToken_userId_fkey" F
 ALTER TABLE "states" ADD CONSTRAINT "states_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "countries"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "cities" ADD CONSTRAINT "cities_state_id_fkey" FOREIGN KEY ("state_id") REFERENCES "states"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "cities" ADD CONSTRAINT "cities_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "countries"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "cities" ADD CONSTRAINT "cities_country_id_fkey" FOREIGN KEY ("country_id") REFERENCES "countries"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "cities" ADD CONSTRAINT "cities_state_id_fkey" FOREIGN KEY ("state_id") REFERENCES "states"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

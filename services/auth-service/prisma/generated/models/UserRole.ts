@@ -208,16 +208,16 @@ export type UserRoleWhereInput = {
   id?: Prisma.IntFilter<"UserRole"> | number
   userId?: Prisma.IntFilter<"UserRole"> | number
   roleId?: Prisma.IntFilter<"UserRole"> | number
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type UserRoleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
   role?: Prisma.RoleOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type UserRoleWhereUniqueInput = Prisma.AtLeast<{
@@ -228,8 +228,8 @@ export type UserRoleWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserRoleWhereInput | Prisma.UserRoleWhereInput[]
   userId?: Prisma.IntFilter<"UserRole"> | number
   roleId?: Prisma.IntFilter<"UserRole"> | number
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId_roleId">
 
 export type UserRoleOrderByWithAggregationInput = {
@@ -253,8 +253,8 @@ export type UserRoleScalarWhereWithAggregatesInput = {
 }
 
 export type UserRoleCreateInput = {
-  user: Prisma.UserCreateNestedOneWithoutUserRolesInput
   role: Prisma.RoleCreateNestedOneWithoutUserRolesInput
+  user: Prisma.UserCreateNestedOneWithoutUserRolesInput
 }
 
 export type UserRoleUncheckedCreateInput = {
@@ -264,8 +264,8 @@ export type UserRoleUncheckedCreateInput = {
 }
 
 export type UserRoleUpdateInput = {
-  user?: Prisma.UserUpdateOneRequiredWithoutUserRolesNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutUserRolesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutUserRolesNestedInput
 }
 
 export type UserRoleUncheckedUpdateInput = {
@@ -542,24 +542,24 @@ export type UserRoleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   userId?: boolean
   roleId?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userRole"]>
 
 export type UserRoleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   roleId?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userRole"]>
 
 export type UserRoleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   roleId?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userRole"]>
 
 export type UserRoleSelectScalar = {
@@ -570,23 +570,23 @@ export type UserRoleSelectScalar = {
 
 export type UserRoleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "roleId", ExtArgs["result"]["userRole"]>
 export type UserRoleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserRoleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type UserRoleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $UserRolePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "UserRole"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     role: Prisma.$RolePayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -986,8 +986,8 @@ readonly fields: UserRoleFieldRefs;
  */
 export interface Prisma__UserRoleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   role<T extends Prisma.RoleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoleDefaultArgs<ExtArgs>>): Prisma.Prisma__RoleClient<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
