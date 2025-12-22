@@ -17,3 +17,32 @@ export const VerificationType = {
 } as const
 
 export type VerificationType = (typeof VerificationType)[keyof typeof VerificationType]
+
+
+export const RestaurantImageType = {
+  RESTAURANT: 'RESTAURANT',
+  MENU: 'MENU',
+  MENU_ITEM: 'MENU_ITEM'
+} as const
+
+export type RestaurantImageType = (typeof RestaurantImageType)[keyof typeof RestaurantImageType]
+
+
+export const DocumentType = {
+  FSSAI: 'FSSAI',
+  PAN: 'PAN',
+  GST: 'GST',
+  BANK: 'BANK',
+  OTHERS: 'OTHERS'
+} as const
+
+export type DocumentType = (typeof DocumentType)[keyof typeof DocumentType]
+
+
+export const DieteryTag = {
+  VEG: 'VEG',
+  NON_VEG: 'NON_VEG',
+  EGG: 'EGG'
+} as const
+
+export type DieteryTag = (typeof DieteryTag)[keyof typeof DieteryTag]

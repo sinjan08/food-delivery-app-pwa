@@ -1,0 +1,1 @@
+delete from _prisma_migrations where id='5e3ca16f-ff68-45b3-9740-1ebf29f40750'

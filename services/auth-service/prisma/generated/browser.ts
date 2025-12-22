@@ -62,3 +62,68 @@ export type State = Prisma.StateModel
  * 
  */
 export type City = Prisma.CityModel
+/**
+ * Model RestaurantCategory
+ * 
+ */
+export type RestaurantCategory = Prisma.RestaurantCategoryModel
+/**
+ * Model Restaurant
+ * 
+ */
+export type Restaurant = Prisma.RestaurantModel
+/**
+ * Model RestaurantImage
+ * 
+ */
+export type RestaurantImage = Prisma.RestaurantImageModel
+/**
+ * Model WorkingDay
+ * 
+ */
+export type WorkingDay = Prisma.WorkingDayModel
+/**
+ * Model RestaurantTiming
+ * 
+ */
+export type RestaurantTiming = Prisma.RestaurantTimingModel
+/**
+ * Model RestaurantDoc
+ * 
+ */
+export type RestaurantDoc = Prisma.RestaurantDocModel
+/**
+ * Model FoodCategory
+ * 
+ */
+export type FoodCategory = Prisma.FoodCategoryModel
+/**
+ * Model RestaurantMenu
+ * 
+ */
+export type RestaurantMenu = Prisma.RestaurantMenuModel
+/**
+ * Model MenuItemMetrics
+ * 
+ */
+export type MenuItemMetrics = Prisma.MenuItemMetricsModel
+/**
+ * Model RestaurantMetrics
+ * 
+ */
+export type RestaurantMetrics = Prisma.RestaurantMetricsModel
+/**
+ * Model RestaurantStatusHistory
+ * 
+ */
+export type RestaurantStatusHistory = Prisma.RestaurantStatusHistoryModel
+/**
+ * Model RestaurantSearchLog
+ * 
+ */
+export type RestaurantSearchLog = Prisma.RestaurantSearchLogModel
+/**
+ * Model RestaurantFeatureFlag
+ * 
+ */
+export type RestaurantFeatureFlag = Prisma.RestaurantFeatureFlagModel

@@ -347,6 +347,7 @@ export type StateWhereInput = {
   users?: Prisma.UserListRelationFilter
   cities?: Prisma.CityListRelationFilter
   country?: Prisma.XOR<Prisma.CountryScalarRelationFilter, Prisma.CountryWhereInput>
+  restaurants?: Prisma.RestaurantListRelationFilter
 }
 
 export type StateOrderByWithRelationInput = {
@@ -372,6 +373,7 @@ export type StateOrderByWithRelationInput = {
   users?: Prisma.UserOrderByRelationAggregateInput
   cities?: Prisma.CityOrderByRelationAggregateInput
   country?: Prisma.CountryOrderByWithRelationInput
+  restaurants?: Prisma.RestaurantOrderByRelationAggregateInput
 }
 
 export type StateWhereUniqueInput = Prisma.AtLeast<{
@@ -400,6 +402,7 @@ export type StateWhereUniqueInput = Prisma.AtLeast<{
   users?: Prisma.UserListRelationFilter
   cities?: Prisma.CityListRelationFilter
   country?: Prisma.XOR<Prisma.CountryScalarRelationFilter, Prisma.CountryWhereInput>
+  restaurants?: Prisma.RestaurantListRelationFilter
 }, "id">
 
 export type StateOrderByWithAggregationInput = {
@@ -475,6 +478,7 @@ export type StateCreateInput = {
   users?: Prisma.UserCreateNestedManyWithoutStateInput
   cities?: Prisma.CityCreateNestedManyWithoutStateInput
   country: Prisma.CountryCreateNestedOneWithoutStatesInput
+  restaurants?: Prisma.RestaurantCreateNestedManyWithoutStateInput
 }
 
 export type StateUncheckedCreateInput = {
@@ -499,6 +503,7 @@ export type StateUncheckedCreateInput = {
   countryId: number
   users?: Prisma.UserUncheckedCreateNestedManyWithoutStateInput
   cities?: Prisma.CityUncheckedCreateNestedManyWithoutStateInput
+  restaurants?: Prisma.RestaurantUncheckedCreateNestedManyWithoutStateInput
 }
 
 export type StateUpdateInput = {
@@ -522,6 +527,7 @@ export type StateUpdateInput = {
   users?: Prisma.UserUpdateManyWithoutStateNestedInput
   cities?: Prisma.CityUpdateManyWithoutStateNestedInput
   country?: Prisma.CountryUpdateOneRequiredWithoutStatesNestedInput
+  restaurants?: Prisma.RestaurantUpdateManyWithoutStateNestedInput
 }
 
 export type StateUncheckedUpdateInput = {
@@ -546,6 +552,7 @@ export type StateUncheckedUpdateInput = {
   countryId?: Prisma.IntFieldUpdateOperationsInput | number
   users?: Prisma.UserUncheckedUpdateManyWithoutStateNestedInput
   cities?: Prisma.CityUncheckedUpdateManyWithoutStateNestedInput
+  restaurants?: Prisma.RestaurantUncheckedUpdateManyWithoutStateNestedInput
 }
 
 export type StateCreateManyInput = {
@@ -786,6 +793,20 @@ export type StateUpdateOneRequiredWithoutCitiesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StateUpdateToOneWithWhereWithoutCitiesInput, Prisma.StateUpdateWithoutCitiesInput>, Prisma.StateUncheckedUpdateWithoutCitiesInput>
 }
 
+export type StateCreateNestedOneWithoutRestaurantsInput = {
+  create?: Prisma.XOR<Prisma.StateCreateWithoutRestaurantsInput, Prisma.StateUncheckedCreateWithoutRestaurantsInput>
+  connectOrCreate?: Prisma.StateCreateOrConnectWithoutRestaurantsInput
+  connect?: Prisma.StateWhereUniqueInput
+}
+
+export type StateUpdateOneRequiredWithoutRestaurantsNestedInput = {
+  create?: Prisma.XOR<Prisma.StateCreateWithoutRestaurantsInput, Prisma.StateUncheckedCreateWithoutRestaurantsInput>
+  connectOrCreate?: Prisma.StateCreateOrConnectWithoutRestaurantsInput
+  upsert?: Prisma.StateUpsertWithoutRestaurantsInput
+  connect?: Prisma.StateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StateUpdateToOneWithWhereWithoutRestaurantsInput, Prisma.StateUpdateWithoutRestaurantsInput>, Prisma.StateUncheckedUpdateWithoutRestaurantsInput>
+}
+
 export type StateCreateWithoutUsersInput = {
   name: string
   countryCode: string
@@ -806,6 +827,7 @@ export type StateCreateWithoutUsersInput = {
   updatedAt?: Date | string
   cities?: Prisma.CityCreateNestedManyWithoutStateInput
   country: Prisma.CountryCreateNestedOneWithoutStatesInput
+  restaurants?: Prisma.RestaurantCreateNestedManyWithoutStateInput
 }
 
 export type StateUncheckedCreateWithoutUsersInput = {
@@ -829,6 +851,7 @@ export type StateUncheckedCreateWithoutUsersInput = {
   updatedAt?: Date | string
   countryId: number
   cities?: Prisma.CityUncheckedCreateNestedManyWithoutStateInput
+  restaurants?: Prisma.RestaurantUncheckedCreateNestedManyWithoutStateInput
 }
 
 export type StateCreateOrConnectWithoutUsersInput = {
@@ -867,6 +890,7 @@ export type StateUpdateWithoutUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cities?: Prisma.CityUpdateManyWithoutStateNestedInput
   country?: Prisma.CountryUpdateOneRequiredWithoutStatesNestedInput
+  restaurants?: Prisma.RestaurantUpdateManyWithoutStateNestedInput
 }
 
 export type StateUncheckedUpdateWithoutUsersInput = {
@@ -890,6 +914,7 @@ export type StateUncheckedUpdateWithoutUsersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   countryId?: Prisma.IntFieldUpdateOperationsInput | number
   cities?: Prisma.CityUncheckedUpdateManyWithoutStateNestedInput
+  restaurants?: Prisma.RestaurantUncheckedUpdateManyWithoutStateNestedInput
 }
 
 export type StateCreateWithoutCountryInput = {
@@ -912,6 +937,7 @@ export type StateCreateWithoutCountryInput = {
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutStateInput
   cities?: Prisma.CityCreateNestedManyWithoutStateInput
+  restaurants?: Prisma.RestaurantCreateNestedManyWithoutStateInput
 }
 
 export type StateUncheckedCreateWithoutCountryInput = {
@@ -935,6 +961,7 @@ export type StateUncheckedCreateWithoutCountryInput = {
   updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutStateInput
   cities?: Prisma.CityUncheckedCreateNestedManyWithoutStateInput
+  restaurants?: Prisma.RestaurantUncheckedCreateNestedManyWithoutStateInput
 }
 
 export type StateCreateOrConnectWithoutCountryInput = {
@@ -1008,6 +1035,7 @@ export type StateCreateWithoutCitiesInput = {
   updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutStateInput
   country: Prisma.CountryCreateNestedOneWithoutStatesInput
+  restaurants?: Prisma.RestaurantCreateNestedManyWithoutStateInput
 }
 
 export type StateUncheckedCreateWithoutCitiesInput = {
@@ -1031,6 +1059,7 @@ export type StateUncheckedCreateWithoutCitiesInput = {
   updatedAt?: Date | string
   countryId: number
   users?: Prisma.UserUncheckedCreateNestedManyWithoutStateInput
+  restaurants?: Prisma.RestaurantUncheckedCreateNestedManyWithoutStateInput
 }
 
 export type StateCreateOrConnectWithoutCitiesInput = {
@@ -1069,6 +1098,7 @@ export type StateUpdateWithoutCitiesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutStateNestedInput
   country?: Prisma.CountryUpdateOneRequiredWithoutStatesNestedInput
+  restaurants?: Prisma.RestaurantUpdateManyWithoutStateNestedInput
 }
 
 export type StateUncheckedUpdateWithoutCitiesInput = {
@@ -1092,6 +1122,117 @@ export type StateUncheckedUpdateWithoutCitiesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   countryId?: Prisma.IntFieldUpdateOperationsInput | number
   users?: Prisma.UserUncheckedUpdateManyWithoutStateNestedInput
+  restaurants?: Prisma.RestaurantUncheckedUpdateManyWithoutStateNestedInput
+}
+
+export type StateCreateWithoutRestaurantsInput = {
+  name: string
+  countryCode: string
+  fipsCode?: string | null
+  iso2?: string | null
+  iso3166_2?: string | null
+  type?: string | null
+  level?: number | null
+  parentId?: number | null
+  native?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  timezone?: string | null
+  translations?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  wikiDataId?: string | null
+  flag?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutStateInput
+  cities?: Prisma.CityCreateNestedManyWithoutStateInput
+  country: Prisma.CountryCreateNestedOneWithoutStatesInput
+}
+
+export type StateUncheckedCreateWithoutRestaurantsInput = {
+  id?: number
+  name: string
+  countryCode: string
+  fipsCode?: string | null
+  iso2?: string | null
+  iso3166_2?: string | null
+  type?: string | null
+  level?: number | null
+  parentId?: number | null
+  native?: string | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  timezone?: string | null
+  translations?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  wikiDataId?: string | null
+  flag?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  countryId: number
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutStateInput
+  cities?: Prisma.CityUncheckedCreateNestedManyWithoutStateInput
+}
+
+export type StateCreateOrConnectWithoutRestaurantsInput = {
+  where: Prisma.StateWhereUniqueInput
+  create: Prisma.XOR<Prisma.StateCreateWithoutRestaurantsInput, Prisma.StateUncheckedCreateWithoutRestaurantsInput>
+}
+
+export type StateUpsertWithoutRestaurantsInput = {
+  update: Prisma.XOR<Prisma.StateUpdateWithoutRestaurantsInput, Prisma.StateUncheckedUpdateWithoutRestaurantsInput>
+  create: Prisma.XOR<Prisma.StateCreateWithoutRestaurantsInput, Prisma.StateUncheckedCreateWithoutRestaurantsInput>
+  where?: Prisma.StateWhereInput
+}
+
+export type StateUpdateToOneWithWhereWithoutRestaurantsInput = {
+  where?: Prisma.StateWhereInput
+  data: Prisma.XOR<Prisma.StateUpdateWithoutRestaurantsInput, Prisma.StateUncheckedUpdateWithoutRestaurantsInput>
+}
+
+export type StateUpdateWithoutRestaurantsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fipsCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iso2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iso3166_2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  native?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  translations?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  wikiDataId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutStateNestedInput
+  cities?: Prisma.CityUpdateManyWithoutStateNestedInput
+  country?: Prisma.CountryUpdateOneRequiredWithoutStatesNestedInput
+}
+
+export type StateUncheckedUpdateWithoutRestaurantsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  fipsCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iso2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iso3166_2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  native?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  translations?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  wikiDataId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  countryId?: Prisma.IntFieldUpdateOperationsInput | number
+  users?: Prisma.UserUncheckedUpdateManyWithoutStateNestedInput
+  cities?: Prisma.CityUncheckedUpdateManyWithoutStateNestedInput
 }
 
 export type StateCreateManyCountryInput = {
@@ -1135,6 +1276,7 @@ export type StateUpdateWithoutCountryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutStateNestedInput
   cities?: Prisma.CityUpdateManyWithoutStateNestedInput
+  restaurants?: Prisma.RestaurantUpdateManyWithoutStateNestedInput
 }
 
 export type StateUncheckedUpdateWithoutCountryInput = {
@@ -1158,6 +1300,7 @@ export type StateUncheckedUpdateWithoutCountryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutStateNestedInput
   cities?: Prisma.CityUncheckedUpdateManyWithoutStateNestedInput
+  restaurants?: Prisma.RestaurantUncheckedUpdateManyWithoutStateNestedInput
 }
 
 export type StateUncheckedUpdateManyWithoutCountryInput = {
@@ -1189,11 +1332,13 @@ export type StateUncheckedUpdateManyWithoutCountryInput = {
 export type StateCountOutputType = {
   users: number
   cities: number
+  restaurants: number
 }
 
 export type StateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | StateCountOutputTypeCountUsersArgs
   cities?: boolean | StateCountOutputTypeCountCitiesArgs
+  restaurants?: boolean | StateCountOutputTypeCountRestaurantsArgs
 }
 
 /**
@@ -1220,6 +1365,13 @@ export type StateCountOutputTypeCountCitiesArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.CityWhereInput
 }
 
+/**
+ * StateCountOutputType without action
+ */
+export type StateCountOutputTypeCountRestaurantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RestaurantWhereInput
+}
+
 
 export type StateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1244,6 +1396,7 @@ export type StateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   users?: boolean | Prisma.State$usersArgs<ExtArgs>
   cities?: boolean | Prisma.State$citiesArgs<ExtArgs>
   country?: boolean | Prisma.CountryDefaultArgs<ExtArgs>
+  restaurants?: boolean | Prisma.State$restaurantsArgs<ExtArgs>
   _count?: boolean | Prisma.StateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["state"]>
 
@@ -1320,6 +1473,7 @@ export type StateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   users?: boolean | Prisma.State$usersArgs<ExtArgs>
   cities?: boolean | Prisma.State$citiesArgs<ExtArgs>
   country?: boolean | Prisma.CountryDefaultArgs<ExtArgs>
+  restaurants?: boolean | Prisma.State$restaurantsArgs<ExtArgs>
   _count?: boolean | Prisma.StateCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1335,6 +1489,7 @@ export type $StatePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     users: Prisma.$UserPayload<ExtArgs>[]
     cities: Prisma.$CityPayload<ExtArgs>[]
     country: Prisma.$CountryPayload<ExtArgs>
+    restaurants: Prisma.$RestaurantPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1753,6 +1908,7 @@ export interface Prisma__StateClient<T, Null = never, ExtArgs extends runtime.Ty
   users<T extends Prisma.State$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.State$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cities<T extends Prisma.State$citiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.State$citiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   country<T extends Prisma.CountryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CountryDefaultArgs<ExtArgs>>): Prisma.Prisma__CountryClient<runtime.Types.Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  restaurants<T extends Prisma.State$restaurantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.State$restaurantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2242,6 +2398,30 @@ export type State$citiesArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.CityScalarFieldEnum | Prisma.CityScalarFieldEnum[]
+}
+
+/**
+ * State.restaurants
+ */
+export type State$restaurantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Restaurant
+   */
+  select?: Prisma.RestaurantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Restaurant
+   */
+  omit?: Prisma.RestaurantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RestaurantInclude<ExtArgs> | null
+  where?: Prisma.RestaurantWhereInput
+  orderBy?: Prisma.RestaurantOrderByWithRelationInput | Prisma.RestaurantOrderByWithRelationInput[]
+  cursor?: Prisma.RestaurantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RestaurantScalarFieldEnum | Prisma.RestaurantScalarFieldEnum[]
 }
 
 /**

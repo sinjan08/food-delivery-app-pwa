@@ -59,7 +59,20 @@ export const ModelName = {
   VerificationToken: 'VerificationToken',
   Country: 'Country',
   State: 'State',
-  City: 'City'
+  City: 'City',
+  RestaurantCategory: 'RestaurantCategory',
+  Restaurant: 'Restaurant',
+  RestaurantImage: 'RestaurantImage',
+  WorkingDay: 'WorkingDay',
+  RestaurantTiming: 'RestaurantTiming',
+  RestaurantDoc: 'RestaurantDoc',
+  FoodCategory: 'FoodCategory',
+  RestaurantMenu: 'RestaurantMenu',
+  MenuItemMetrics: 'MenuItemMetrics',
+  RestaurantMetrics: 'RestaurantMetrics',
+  RestaurantStatusHistory: 'RestaurantStatusHistory',
+  RestaurantSearchLog: 'RestaurantSearchLog',
+  RestaurantFeatureFlag: 'RestaurantFeatureFlag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -228,6 +241,178 @@ export const CityScalarFieldEnum = {
 } as const
 
 export type CityScalarFieldEnum = (typeof CityScalarFieldEnum)[keyof typeof CityScalarFieldEnum]
+
+
+export const RestaurantCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type RestaurantCategoryScalarFieldEnum = (typeof RestaurantCategoryScalarFieldEnum)[keyof typeof RestaurantCategoryScalarFieldEnum]
+
+
+export const RestaurantScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  name: 'name',
+  code: 'code',
+  address: 'address',
+  landmark: 'landmark',
+  countryId: 'countryId',
+  stateId: 'stateId',
+  cityId: 'cityId',
+  pincode: 'pincode',
+  categoryId: 'categoryId',
+  description: 'description',
+  voiceNoteDirection: 'voiceNoteDirection',
+  rating: 'rating',
+  ratingCount: 'ratingCount',
+  isPureVeg: 'isPureVeg',
+  avgPrepTime: 'avgPrepTime',
+  searchText: 'searchText',
+  isApproved: 'isApproved',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isActive: 'isActive',
+  deletedAt: 'deletedAt'
+} as const
+
+export type RestaurantScalarFieldEnum = (typeof RestaurantScalarFieldEnum)[keyof typeof RestaurantScalarFieldEnum]
+
+
+export const RestaurantImageScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  imageType: 'imageType',
+  path: 'path',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isActive: 'isActive',
+  deletedAt: 'deletedAt'
+} as const
+
+export type RestaurantImageScalarFieldEnum = (typeof RestaurantImageScalarFieldEnum)[keyof typeof RestaurantImageScalarFieldEnum]
+
+
+export const WorkingDayScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  dayNumber: 'dayNumber'
+} as const
+
+export type WorkingDayScalarFieldEnum = (typeof WorkingDayScalarFieldEnum)[keyof typeof WorkingDayScalarFieldEnum]
+
+
+export const RestaurantTimingScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  workingDayId: 'workingDayId',
+  openMinute: 'openMinute',
+  closeMinute: 'closeMinute',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isActive: 'isActive',
+  deletedAt: 'deletedAt'
+} as const
+
+export type RestaurantTimingScalarFieldEnum = (typeof RestaurantTimingScalarFieldEnum)[keyof typeof RestaurantTimingScalarFieldEnum]
+
+
+export const RestaurantDocScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  docType: 'docType',
+  path: 'path',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isActive: 'isActive',
+  deletedAt: 'deletedAt'
+} as const
+
+export type RestaurantDocScalarFieldEnum = (typeof RestaurantDocScalarFieldEnum)[keyof typeof RestaurantDocScalarFieldEnum]
+
+
+export const FoodCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  parentId: 'parentId',
+  isTrending: 'isTrending',
+  isPopular: 'isPopular'
+} as const
+
+export type FoodCategoryScalarFieldEnum = (typeof FoodCategoryScalarFieldEnum)[keyof typeof FoodCategoryScalarFieldEnum]
+
+
+export const RestaurantMenuScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  categoryId: 'categoryId',
+  name: 'name',
+  price: 'price',
+  servingSize: 'servingSize',
+  dieteryTag: 'dieteryTag',
+  description: 'description',
+  isAvailable: 'isAvailable',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RestaurantMenuScalarFieldEnum = (typeof RestaurantMenuScalarFieldEnum)[keyof typeof RestaurantMenuScalarFieldEnum]
+
+
+export const MenuItemMetricsScalarFieldEnum = {
+  menuItemId: 'menuItemId',
+  orderCount: 'orderCount',
+  lastOrderedAt: 'lastOrderedAt'
+} as const
+
+export type MenuItemMetricsScalarFieldEnum = (typeof MenuItemMetricsScalarFieldEnum)[keyof typeof MenuItemMetricsScalarFieldEnum]
+
+
+export const RestaurantMetricsScalarFieldEnum = {
+  restaurantId: 'restaurantId',
+  avgRating: 'avgRating',
+  ratingCount: 'ratingCount',
+  avgPrepTime: 'avgPrepTime',
+  orderCount: 'orderCount',
+  lastOrderAt: 'lastOrderAt'
+} as const
+
+export type RestaurantMetricsScalarFieldEnum = (typeof RestaurantMetricsScalarFieldEnum)[keyof typeof RestaurantMetricsScalarFieldEnum]
+
+
+export const RestaurantStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  status: 'status',
+  reason: 'reason',
+  changedAt: 'changedAt'
+} as const
+
+export type RestaurantStatusHistoryScalarFieldEnum = (typeof RestaurantStatusHistoryScalarFieldEnum)[keyof typeof RestaurantStatusHistoryScalarFieldEnum]
+
+
+export const RestaurantSearchLogScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  searchText: 'searchText',
+  cityId: 'cityId',
+  userId: 'userId',
+  clicked: 'clicked',
+  createdAt: 'createdAt'
+} as const
+
+export type RestaurantSearchLogScalarFieldEnum = (typeof RestaurantSearchLogScalarFieldEnum)[keyof typeof RestaurantSearchLogScalarFieldEnum]
+
+
+export const RestaurantFeatureFlagScalarFieldEnum = {
+  id: 'id',
+  restaurantId: 'restaurantId',
+  key: 'key',
+  value: 'value'
+} as const
+
+export type RestaurantFeatureFlagScalarFieldEnum = (typeof RestaurantFeatureFlagScalarFieldEnum)[keyof typeof RestaurantFeatureFlagScalarFieldEnum]
 
 
 export const SortOrder = {

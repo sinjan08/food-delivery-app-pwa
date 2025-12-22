@@ -8,35 +8,28 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String
-  email    String  @unique
-  phone    String? @unique
-  password String?
-
-  address String?
-  zipCode String?
-
-  // 🔥 New Relations
-  countryId Int?
-  stateId   Int?
-  cityId    Int?
-
-  country Country? @relation(fields: [countryId], references: [id])
-  state   State?   @relation(fields: [stateId], references: [id])
-  city    City?    @relation(fields: [cityId], references: [id])
-
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  isActive        Boolean   @default(true)
-  deletedAt       DateTime?
-  emailVerifiedAt DateTime?
-  phoneVerifiedAt DateTime?
-
-  // Relations
-  userRoles          UserRole[]
-  refreshTokens      RefreshToken[]
+  id                 Int                 @id @default(autoincrement())
+  name               String
+  email              String              @unique
+  phone              String?             @unique
+  password           String?
+  address            String?
+  zipCode            String?
+  countryId          Int?
+  stateId            Int?
+  cityId             Int?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  isActive           Boolean             @default(true)
+  deletedAt          DateTime?
+  emailVerifiedAt    DateTime?
+  phoneVerifiedAt    DateTime?
   oauthAccounts      OAuthAccount[]
+  refreshTokens      RefreshToken[]
+  city               City?               @relation(fields: [cityId], references: [id])
+  country            Country?            @relation(fields: [countryId], references: [id])
+  state              State?              @relation(fields: [stateId], references: [id])
+  userRoles          UserRole[]
   verificationTokens VerificationToken[]
 
   @@index([email])
@@ -99,16 +92,16 @@ model VerificationToken {
 }
 
 model Country {
-  id             Int      @id @default(autoincrement())
+  id             Int          @id @default(autoincrement())
   name           String
-  iso3           String?  @db.Char(3)
-  numericCode    String?  @map("numeric_code") @db.Char(3)
-  iso2           String?  @db.Char(2)
+  iso3           String?      @db.Char(3)
+  numericCode    String?      @map("numeric_code") @db.Char(3)
+  iso2           String?      @db.Char(2)
   phonecode      String?
   capital        String?
   currency       String?
-  currencyName   String?  @map("currency_name")
-  currencySymbol String?  @map("currency_symbol")
+  currencyName   String?      @map("currency_name")
+  currencySymbol String?      @map("currency_symbol")
   tld            String?
   native         String?
   population     BigInt?
@@ -116,68 +109,72 @@ model Country {
   nationality    String?
   timezones      Json?
   translations   Json?
-  latitude       Decimal? @db.Decimal(15, 8)
-  longitude      Decimal? @db.Decimal(15, 8)
+  latitude       Decimal?     @db.Decimal(15, 8)
+  longitude      Decimal?     @db.Decimal(15, 8)
   emoji          String?
   emojiU         String?
   wikiDataId     String?
-  flag           Boolean  @default(true)
-  createdAt      DateTime @default(now()) @map("created_at")
-  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at")
+  flag           Boolean      @default(true)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @default(now()) @updatedAt @map("updated_at")
   users          User[]
   cities         City[]
   states         State[]
+  restaurants    Restaurant[]
 
   @@map("countries")
 }
 
 model State {
-  id           Int      @id @default(autoincrement())
+  id           Int          @id @default(autoincrement())
   name         String
-  countryCode  String   @map("country_code")
-  fipsCode     String?  @map("fips_code")
+  countryCode  String       @map("country_code")
+  fipsCode     String?      @map("fips_code")
   iso2         String?
   iso3166_2    String?
   type         String?
   level        Int?
-  parentId     Int?     @map("parent_id")
+  parentId     Int?         @map("parent_id")
   native       String?
-  latitude     Decimal? @db.Decimal(15, 8)
-  longitude    Decimal? @db.Decimal(15, 8)
+  latitude     Decimal?     @db.Decimal(15, 8)
+  longitude    Decimal?     @db.Decimal(15, 8)
   timezone     String?
   translations Json?
   wikiDataId   String?
-  flag         Boolean  @default(true)
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
-  countryId    Int      @map("country_id")
+  flag         Boolean      @default(true)
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @default(now()) @updatedAt @map("updated_at")
+  countryId    Int          @map("country_id")
   users        User[]
   cities       City[]
-  country      Country  @relation(fields: [countryId], references: [id])
+  country      Country      @relation(fields: [countryId], references: [id])
+  restaurants  Restaurant[]
 
   @@index([countryId])
   @@map("states")
 }
 
 model City {
-  id           Int      @id @default(autoincrement())
-  name         String
-  stateCode    String   @map("state_code")
-  countryCode  String   @map("country_code")
-  latitude     Decimal  @db.Decimal(15, 8)
-  longitude    Decimal  @db.Decimal(15, 8)
-  native       String?
-  timezone     String?
-  translations Json?
-  wikiDataId   String?
-  flag         Boolean  @default(true)
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
-  stateId      Int      @map("state_id")
-  countryId    Int      @map("country_id")
-  users        User[]
-  country      Country  @relation(fields: [countryId], references: [id])
-  state        State    @relation(fields: [stateId], references: [id])
+  id                   Int                   @id @default(autoincrement())
+  name                 String
+  stateCode            String                @map("state_code")
+  countryCode          String                @map("country_code")
+  latitude             Decimal               @db.Decimal(15, 8)
+  longitude            Decimal               @db.Decimal(15, 8)
+  native               String?
+  timezone             String?
+  translations         Json?
+  wikiDataId           String?
+  flag                 Boolean               @default(true)
+  createdAt            DateTime              @default(now()) @map("created_at")
+  updatedAt            DateTime              @default(now()) @updatedAt @map("updated_at")
+  stateId              Int                   @map("state_id")
+  countryId            Int                   @map("country_id")
+  users                User[]
+  country              Country               @relation(fields: [countryId], references: [id])
+  state                State                 @relation(fields: [stateId], references: [id])
+  restaurants          Restaurant[]
+  restaurantSearchLogs RestaurantSearchLog[]
 
   @@index([stateId])
   @@index([countryId])
@@ -189,4 +186,281 @@ enum VerificationType {
   PHONE
   FORGOT_PASSWORD
   VERIFY_ACCOUNT
+}
+
+//
+// 🏪 RESTAURANT CATEGORY (Pizza, Cafe, Bakery…)
+//
+model RestaurantCategory {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  restaurants Restaurant[]
+}
+
+//
+// 🏪 RESTAURANT
+//
+model Restaurant {
+  id      Int @id @default(autoincrement())
+  ownerId Int
+
+  name     String
+  code     String  @unique
+  address  String
+  landmark String?
+
+  countryId Int
+  stateId   Int
+  cityId    Int
+
+  pincode    String
+  categoryId Int
+
+  description        String?
+  voiceNoteDirection String?
+
+  rating      Decimal? @db.Decimal(3, 2)
+  ratingCount Int      @default(0)
+  isPureVeg   Boolean  @default(false)
+  avgPrepTime Int?
+
+  searchText String?
+
+  isApproved Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  isActive   Boolean   @default(true)
+  deletedAt  DateTime?
+
+  country  Country            @relation(fields: [countryId], references: [id])
+  state    State              @relation(fields: [stateId], references: [id])
+  city     City               @relation(fields: [cityId], references: [id])
+  category RestaurantCategory @relation(fields: [categoryId], references: [id])
+
+  images               RestaurantImage[]
+  timings              RestaurantTiming[]
+  docs                 RestaurantDoc[]
+  menu                 RestaurantMenu[]
+  metrics              RestaurantMetrics?
+  features             RestaurantFeatureFlag[]
+  statusLog            RestaurantStatusHistory[]
+  restaurantSearchLogs RestaurantSearchLog[]
+
+  @@index([ownerId])
+  @@index([countryId])
+  @@index([stateId])
+  @@index([cityId])
+  @@index([categoryId])
+}
+
+//
+// 🖼 RESTAURANT IMAGES
+//
+model RestaurantImage {
+  id           Int                 @id @default(autoincrement())
+  restaurantId Int
+  imageType    RestaurantImageType
+  path         String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isActive  Boolean   @default(true)
+  deletedAt DateTime?
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+
+  @@index([restaurantId])
+}
+
+enum RestaurantImageType {
+  RESTAURANT
+  MENU
+  MENU_ITEM
+}
+
+//
+// 📅 WORKING DAYS
+//
+model WorkingDay {
+  id        Int    @id @default(autoincrement())
+  name      String
+  dayNumber Int // 1 = Monday
+
+  timings RestaurantTiming[]
+}
+
+//
+// ⏰ RESTAURANT TIMINGS (MINUTES SINCE MIDNIGHT)
+//
+model RestaurantTiming {
+  id           Int @id @default(autoincrement())
+  restaurantId Int
+  workingDayId Int
+
+  openMinute  Int
+  closeMinute Int
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isActive  Boolean   @default(true)
+  deletedAt DateTime?
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+  workingDay WorkingDay @relation(fields: [workingDayId], references: [id])
+
+  @@unique([restaurantId, workingDayId])
+}
+
+//
+// 📄 RESTAURANT DOCUMENTS
+//
+model RestaurantDoc {
+  id           Int          @id @default(autoincrement())
+  restaurantId Int
+  docType      DocumentType
+  path         String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isActive  Boolean   @default(true)
+  deletedAt DateTime?
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+enum DocumentType {
+  FSSAI
+  PAN
+  GST
+  BANK
+  OTHERS
+}
+
+//
+// 🍽 FOOD CATEGORY (TREE STRUCTURE)
+//
+model FoodCategory {
+  id       Int    @id @default(autoincrement())
+  name     String
+  parentId Int?
+
+  parent   FoodCategory?  @relation("FoodCategoryTree", fields: [parentId], references: [id])
+  children FoodCategory[] @relation("FoodCategoryTree")
+
+  isTrending Boolean @default(false)
+  isPopular  Boolean @default(false)
+
+  menuItems RestaurantMenu[]
+}
+
+//
+// 🍛 MENU ITEM
+//
+model RestaurantMenu {
+  id           Int @id @default(autoincrement())
+  restaurantId Int
+  categoryId   Int
+
+  name        String
+  price       Decimal    @db.Decimal(10, 2)
+  servingSize String
+  dieteryTag  DieteryTag
+  description String?
+
+  isAvailable Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  restaurant Restaurant   @relation(fields: [restaurantId], references: [id])
+  category   FoodCategory @relation(fields: [categoryId], references: [id])
+
+  metrics MenuItemMetrics?
+
+  @@index([restaurantId])
+  @@index([categoryId])
+}
+
+enum DieteryTag {
+  VEG
+  NON_VEG
+  EGG
+}
+
+//
+// 📊 MENU ITEM METRICS (OPTIONAL, ML READY)
+//
+model MenuItemMetrics {
+  menuItemId    Int       @id
+  orderCount    Int       @default(0)
+  lastOrderedAt DateTime?
+
+  menuItem RestaurantMenu @relation(fields: [menuItemId], references: [id])
+}
+
+//
+// 📈 RESTAURANT METRICS (DENORMALIZED READ MODEL)
+//
+model RestaurantMetrics {
+  restaurantId Int @id
+
+  avgRating   Decimal?  @db.Decimal(3, 2)
+  ratingCount Int       @default(0)
+  avgPrepTime Int?
+  orderCount  Int       @default(0)
+  lastOrderAt DateTime?
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+//
+// 🚦 RESTAURANT STATUS HISTORY
+//
+model RestaurantStatusHistory {
+  id           Int     @id @default(autoincrement())
+  restaurantId Int
+  status       Boolean
+  reason       String?
+
+  changedAt DateTime @default(now())
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+
+  @@index([restaurantId])
+}
+
+//
+// 🔎 RESTAURANT SEARCH LOG (AI / ML GOLD)
+//
+model RestaurantSearchLog {
+  id           Int     @id @default(autoincrement())
+  restaurantId Int?
+  searchText   String
+  cityId       Int
+  userId       Int?
+  clicked      Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  restaurant Restaurant? @relation(fields: [restaurantId], references: [id])
+  city       City        @relation(fields: [cityId], references: [id])
+
+  @@index([cityId])
+  @@index([restaurantId])
+  @@index([searchText])
+}
+
+//
+// 🧪 RESTAURANT FEATURE FLAGS
+//
+model RestaurantFeatureFlag {
+  id           Int     @id @default(autoincrement())
+  restaurantId Int
+  key          String
+  value        Boolean
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+
+  @@unique([restaurantId, key])
 }
