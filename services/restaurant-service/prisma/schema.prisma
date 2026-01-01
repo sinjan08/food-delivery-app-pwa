@@ -68,9 +68,10 @@ model Restaurant {
   avgPrepTime             Int?
   searchText              String?
   createdAt               DateTime                  @default(now())
-  updatedAt               DateTime
+  updatedAt               DateTime                  @updatedAt
   isActive                Boolean                   @default(true)
   deletedAt               DateTime?
+  isApproved              Boolean                   @default(false)
   RestaurantCategory      RestaurantCategory        @relation(fields: [categoryId], references: [id])
   cities                  cities                    @relation(fields: [cityId], references: [id])
   countries               countries                 @relation(fields: [countryId], references: [id])
@@ -103,7 +104,7 @@ model RestaurantDoc {
   docType      DocumentType
   path         String
   createdAt    DateTime     @default(now())
-  updatedAt    DateTime
+  updatedAt    DateTime     @updatedAt
   isActive     Boolean      @default(true)
   deletedAt    DateTime?
   Restaurant   Restaurant   @relation(fields: [restaurantId], references: [id])
@@ -125,7 +126,7 @@ model RestaurantImage {
   imageType    RestaurantImageType
   path         String
   createdAt    DateTime            @default(now())
-  updatedAt    DateTime
+  updatedAt    DateTime            @updatedAt
   isActive     Boolean             @default(true)
   deletedAt    DateTime?
   Restaurant   Restaurant          @relation(fields: [restaurantId], references: [id])
@@ -144,7 +145,7 @@ model RestaurantMenu {
   description     String?
   isAvailable     Boolean          @default(true)
   createdAt       DateTime         @default(now())
-  updatedAt       DateTime
+  updatedAt       DateTime         @updatedAt
   MenuItemMetrics MenuItemMetrics?
   FoodCategory    FoodCategory     @relation(fields: [categoryId], references: [id])
   Restaurant      Restaurant       @relation(fields: [restaurantId], references: [id])
@@ -197,7 +198,7 @@ model RestaurantTiming {
   openMinute   Int
   closeMinute  Int
   createdAt    DateTime   @default(now())
-  updatedAt    DateTime
+  updatedAt    DateTime   @updatedAt
   isActive     Boolean    @default(true)
   deletedAt    DateTime?
   Restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
@@ -226,11 +227,12 @@ model User {
   stateId           Int?
   cityId            Int?
   createdAt         DateTime            @default(now())
-  updatedAt         DateTime
+  updatedAt         DateTime            @updatedAt
   isActive          Boolean             @default(true)
   deletedAt         DateTime?
   emailVerifiedAt   DateTime?
   phoneVerifiedAt   DateTime?
+  formStepCompleted Int                 @default(0)
   OAuthAccount      OAuthAccount[]
   RefreshToken      RefreshToken[]
   cities            cities?             @relation(fields: [cityId], references: [id])

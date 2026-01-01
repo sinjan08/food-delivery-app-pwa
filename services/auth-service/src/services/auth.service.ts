@@ -18,6 +18,7 @@ type RegisterInput = {
   countryId?: number;
   stateId?: number;
   cityId?: number;
+  roleCode?: string;
 }
 
 type AdminCreateUserInput = RegisterInput & {
@@ -112,13 +113,44 @@ class AuthService {
       });
 
       if (existing) {
+        const role = await prisma.userRole.findFirst({
+          where: { userId: existing.id },
+          include: { role: true }
+        });
+
+        if (role?.role.code === 'RESTAURANT' && existing.formStepCompleted >= 1) {
+          // createing access token
+          const accessToken = jwt.sign({
+            id: existing.id,
+            email: input.email,
+            phone: input.phone,
+            roles: [role?.role.name]
+          })
+          logger.debug(`Access token created for user ID ${existing.id}`);
+
+          // creating refresh token
+          const refreshToken = await this.createRefreshToken(existing.id);
+          logger.debug(`Refresh token created for user ID ${existing.id}`);
+
+          return {
+            user: {
+              id: existing.id,
+              name: existing.name,
+              email: existing.email,
+              phone: existing.phone,
+              role
+            },
+            accessToken,
+            refreshToken: refreshToken.token
+          }
+        }
         logger.warn('User with given email or phone already exists');
         throw new Error('User with given email or phone already exists');
       }
 
       // hashing password
       const hashed = await bcrypt.hash(input.password, 10);
-
+      const formStepCompleted = input.roleCode === 'RESTAURANT' ? 1 : 0;
       // creating user
       const user = await prisma.user.create({
         data: {
@@ -130,13 +162,14 @@ class AuthService {
           zipCode: input.zipCode || null,
           countryId: input.countryId || null,
           stateId: input.stateId || null,
-          cityId: input.cityId || null
+          cityId: input.cityId || null,
+          formStepCompleted
         }
       });
       logger.info(`User created with ID: ${user.id}`);
 
       // assigning default role
-      const role = await this.assignRoleToUser(user.id, 'USER');
+      const role = await this.assignRoleToUser(user.id, input.roleCode || 'USER');
       logger.info(`User registered successfully with ID: ${user.id} and role: ${role.name}`);
 
       // createing access token

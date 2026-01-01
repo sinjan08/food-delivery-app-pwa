@@ -308,7 +308,7 @@ export type RestaurantImageCreateInput = {
   imageType: $Enums.RestaurantImageType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
   Restaurant: Prisma.RestaurantCreateNestedOneWithoutRestaurantImageInput
@@ -320,7 +320,7 @@ export type RestaurantImageUncheckedCreateInput = {
   imageType: $Enums.RestaurantImageType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -352,7 +352,7 @@ export type RestaurantImageCreateManyInput = {
   imageType: $Enums.RestaurantImageType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -480,7 +480,7 @@ export type RestaurantImageCreateWithoutRestaurantInput = {
   imageType: $Enums.RestaurantImageType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -490,7 +490,7 @@ export type RestaurantImageUncheckedCreateWithoutRestaurantInput = {
   imageType: $Enums.RestaurantImageType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -540,7 +540,7 @@ export type RestaurantImageCreateManyRestaurantInput = {
   imageType: $Enums.RestaurantImageType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }

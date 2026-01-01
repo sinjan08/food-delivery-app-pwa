@@ -2103,6 +2103,7 @@ export const UserScalarFieldEnum = {
   countryId: 'countryId',
   stateId: 'stateId',
   cityId: 'cityId',
+  formStepCompleted: 'formStepCompleted',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isActive: 'isActive',

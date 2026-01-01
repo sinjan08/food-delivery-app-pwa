@@ -308,7 +308,7 @@ export type RestaurantDocCreateInput = {
   docType: $Enums.DocumentType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
   Restaurant: Prisma.RestaurantCreateNestedOneWithoutRestaurantDocInput
@@ -320,7 +320,7 @@ export type RestaurantDocUncheckedCreateInput = {
   docType: $Enums.DocumentType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -352,7 +352,7 @@ export type RestaurantDocCreateManyInput = {
   docType: $Enums.DocumentType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -480,7 +480,7 @@ export type RestaurantDocCreateWithoutRestaurantInput = {
   docType: $Enums.DocumentType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -490,7 +490,7 @@ export type RestaurantDocUncheckedCreateWithoutRestaurantInput = {
   docType: $Enums.DocumentType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -540,7 +540,7 @@ export type RestaurantDocCreateManyRestaurantInput = {
   docType: $Enums.DocumentType
   path: string
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }

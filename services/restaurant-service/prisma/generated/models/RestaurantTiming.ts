@@ -336,7 +336,7 @@ export type RestaurantTimingCreateInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
   Restaurant: Prisma.RestaurantCreateNestedOneWithoutRestaurantTimingInput
@@ -350,7 +350,7 @@ export type RestaurantTimingUncheckedCreateInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -385,7 +385,7 @@ export type RestaurantTimingCreateManyInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -566,7 +566,7 @@ export type RestaurantTimingCreateWithoutRestaurantInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
   WorkingDay: Prisma.WorkingDayCreateNestedOneWithoutRestaurantTimingInput
@@ -578,7 +578,7 @@ export type RestaurantTimingUncheckedCreateWithoutRestaurantInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -628,7 +628,7 @@ export type RestaurantTimingCreateWithoutWorkingDayInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
   Restaurant: Prisma.RestaurantCreateNestedOneWithoutRestaurantTimingInput
@@ -640,7 +640,7 @@ export type RestaurantTimingUncheckedCreateWithoutWorkingDayInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -677,7 +677,7 @@ export type RestaurantTimingCreateManyRestaurantInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }
@@ -720,7 +720,7 @@ export type RestaurantTimingCreateManyWorkingDayInput = {
   openMinute: number
   closeMinute: number
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
 }

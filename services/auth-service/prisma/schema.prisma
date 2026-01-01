@@ -18,6 +18,7 @@ model User {
   countryId          Int?
   stateId            Int?
   cityId             Int?
+  formStepCompleted  Int                 @default(0)
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
   isActive           Boolean             @default(true)

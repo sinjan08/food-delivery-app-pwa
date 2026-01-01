@@ -31,6 +31,7 @@ export type UserAvgAggregateOutputType = {
   countryId: number | null
   stateId: number | null
   cityId: number | null
+  formStepCompleted: number | null
 }
 
 export type UserSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type UserSumAggregateOutputType = {
   countryId: number | null
   stateId: number | null
   cityId: number | null
+  formStepCompleted: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -51,6 +53,7 @@ export type UserMinAggregateOutputType = {
   countryId: number | null
   stateId: number | null
   cityId: number | null
+  formStepCompleted: number | null
   createdAt: Date | null
   updatedAt: Date | null
   isActive: boolean | null
@@ -70,6 +73,7 @@ export type UserMaxAggregateOutputType = {
   countryId: number | null
   stateId: number | null
   cityId: number | null
+  formStepCompleted: number | null
   createdAt: Date | null
   updatedAt: Date | null
   isActive: boolean | null
@@ -89,6 +93,7 @@ export type UserCountAggregateOutputType = {
   countryId: number
   stateId: number
   cityId: number
+  formStepCompleted: number
   createdAt: number
   updatedAt: number
   isActive: number
@@ -104,6 +109,7 @@ export type UserAvgAggregateInputType = {
   countryId?: true
   stateId?: true
   cityId?: true
+  formStepCompleted?: true
 }
 
 export type UserSumAggregateInputType = {
@@ -111,6 +117,7 @@ export type UserSumAggregateInputType = {
   countryId?: true
   stateId?: true
   cityId?: true
+  formStepCompleted?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -124,6 +131,7 @@ export type UserMinAggregateInputType = {
   countryId?: true
   stateId?: true
   cityId?: true
+  formStepCompleted?: true
   createdAt?: true
   updatedAt?: true
   isActive?: true
@@ -143,6 +151,7 @@ export type UserMaxAggregateInputType = {
   countryId?: true
   stateId?: true
   cityId?: true
+  formStepCompleted?: true
   createdAt?: true
   updatedAt?: true
   isActive?: true
@@ -162,6 +171,7 @@ export type UserCountAggregateInputType = {
   countryId?: true
   stateId?: true
   cityId?: true
+  formStepCompleted?: true
   createdAt?: true
   updatedAt?: true
   isActive?: true
@@ -268,6 +278,7 @@ export type UserGroupByOutputType = {
   countryId: number | null
   stateId: number | null
   cityId: number | null
+  formStepCompleted: number
   createdAt: Date
   updatedAt: Date
   isActive: boolean
@@ -310,6 +321,7 @@ export type UserWhereInput = {
   countryId?: Prisma.IntNullableFilter<"User"> | number | null
   stateId?: Prisma.IntNullableFilter<"User"> | number | null
   cityId?: Prisma.IntNullableFilter<"User"> | number | null
+  formStepCompleted?: Prisma.IntFilter<"User"> | number
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isActive?: Prisma.BoolFilter<"User"> | boolean
@@ -336,6 +348,7 @@ export type UserOrderByWithRelationInput = {
   countryId?: Prisma.SortOrderInput | Prisma.SortOrder
   stateId?: Prisma.SortOrderInput | Prisma.SortOrder
   cityId?: Prisma.SortOrderInput | Prisma.SortOrder
+  formStepCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -365,6 +378,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   countryId?: Prisma.IntNullableFilter<"User"> | number | null
   stateId?: Prisma.IntNullableFilter<"User"> | number | null
   cityId?: Prisma.IntNullableFilter<"User"> | number | null
+  formStepCompleted?: Prisma.IntFilter<"User"> | number
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isActive?: Prisma.BoolFilter<"User"> | boolean
@@ -391,6 +405,7 @@ export type UserOrderByWithAggregationInput = {
   countryId?: Prisma.SortOrderInput | Prisma.SortOrder
   stateId?: Prisma.SortOrderInput | Prisma.SortOrder
   cityId?: Prisma.SortOrderInput | Prisma.SortOrder
+  formStepCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -418,6 +433,7 @@ export type UserScalarWhereWithAggregatesInput = {
   countryId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
   stateId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
   cityId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  formStepCompleted?: Prisma.IntWithAggregatesFilter<"User"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
@@ -433,6 +449,7 @@ export type UserCreateInput = {
   password?: string | null
   address?: string | null
   zipCode?: string | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -459,6 +476,7 @@ export type UserUncheckedCreateInput = {
   countryId?: number | null
   stateId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -478,6 +496,7 @@ export type UserUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -504,6 +523,7 @@ export type UserUncheckedUpdateInput = {
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -527,6 +547,7 @@ export type UserCreateManyInput = {
   countryId?: number | null
   stateId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -542,6 +563,7 @@ export type UserUpdateManyMutationInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -561,6 +583,7 @@ export type UserUncheckedUpdateManyInput = {
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -580,6 +603,7 @@ export type UserCountOrderByAggregateInput = {
   countryId?: Prisma.SortOrder
   stateId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
+  formStepCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -593,6 +617,7 @@ export type UserAvgOrderByAggregateInput = {
   countryId?: Prisma.SortOrder
   stateId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
+  formStepCompleted?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -606,6 +631,7 @@ export type UserMaxOrderByAggregateInput = {
   countryId?: Prisma.SortOrder
   stateId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
+  formStepCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -625,6 +651,7 @@ export type UserMinOrderByAggregateInput = {
   countryId?: Prisma.SortOrder
   stateId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
+  formStepCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -638,6 +665,7 @@ export type UserSumOrderByAggregateInput = {
   countryId?: Prisma.SortOrder
   stateId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
+  formStepCompleted?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -663,6 +691,14 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
@@ -673,14 +709,6 @@ export type BoolFieldUpdateOperationsInput = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type NullableIntFieldUpdateOperationsInput = {
@@ -880,6 +908,7 @@ export type UserCreateWithoutUserRolesInput = {
   password?: string | null
   address?: string | null
   zipCode?: string | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -905,6 +934,7 @@ export type UserUncheckedCreateWithoutUserRolesInput = {
   countryId?: number | null
   stateId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -939,6 +969,7 @@ export type UserUpdateWithoutUserRolesInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -964,6 +995,7 @@ export type UserUncheckedUpdateWithoutUserRolesInput = {
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -982,6 +1014,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   password?: string | null
   address?: string | null
   zipCode?: string | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1007,6 +1040,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   countryId?: number | null
   stateId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1041,6 +1075,7 @@ export type UserUpdateWithoutRefreshTokensInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1066,6 +1101,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1084,6 +1120,7 @@ export type UserCreateWithoutOauthAccountsInput = {
   password?: string | null
   address?: string | null
   zipCode?: string | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1109,6 +1146,7 @@ export type UserUncheckedCreateWithoutOauthAccountsInput = {
   countryId?: number | null
   stateId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1143,6 +1181,7 @@ export type UserUpdateWithoutOauthAccountsInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1168,6 +1207,7 @@ export type UserUncheckedUpdateWithoutOauthAccountsInput = {
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1186,6 +1226,7 @@ export type UserCreateWithoutVerificationTokensInput = {
   password?: string | null
   address?: string | null
   zipCode?: string | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1211,6 +1252,7 @@ export type UserUncheckedCreateWithoutVerificationTokensInput = {
   countryId?: number | null
   stateId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1245,6 +1287,7 @@ export type UserUpdateWithoutVerificationTokensInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1270,6 +1313,7 @@ export type UserUncheckedUpdateWithoutVerificationTokensInput = {
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1288,6 +1332,7 @@ export type UserCreateWithoutCountryInput = {
   password?: string | null
   address?: string | null
   zipCode?: string | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1312,6 +1357,7 @@ export type UserUncheckedCreateWithoutCountryInput = {
   zipCode?: string | null
   stateId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1364,6 +1410,7 @@ export type UserScalarWhereInput = {
   countryId?: Prisma.IntNullableFilter<"User"> | number | null
   stateId?: Prisma.IntNullableFilter<"User"> | number | null
   cityId?: Prisma.IntNullableFilter<"User"> | number | null
+  formStepCompleted?: Prisma.IntFilter<"User"> | number
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   isActive?: Prisma.BoolFilter<"User"> | boolean
@@ -1379,6 +1426,7 @@ export type UserCreateWithoutStateInput = {
   password?: string | null
   address?: string | null
   zipCode?: string | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1403,6 +1451,7 @@ export type UserUncheckedCreateWithoutStateInput = {
   zipCode?: string | null
   countryId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1448,6 +1497,7 @@ export type UserCreateWithoutCityInput = {
   password?: string | null
   address?: string | null
   zipCode?: string | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1472,6 +1522,7 @@ export type UserUncheckedCreateWithoutCityInput = {
   zipCode?: string | null
   countryId?: number | null
   stateId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1520,6 +1571,7 @@ export type UserCreateManyCountryInput = {
   zipCode?: string | null
   stateId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1535,6 +1587,7 @@ export type UserUpdateWithoutCountryInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1559,6 +1612,7 @@ export type UserUncheckedUpdateWithoutCountryInput = {
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1581,6 +1635,7 @@ export type UserUncheckedUpdateManyWithoutCountryInput = {
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1599,6 +1654,7 @@ export type UserCreateManyStateInput = {
   zipCode?: string | null
   countryId?: number | null
   cityId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1614,6 +1670,7 @@ export type UserUpdateWithoutStateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1638,6 +1695,7 @@ export type UserUncheckedUpdateWithoutStateInput = {
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1660,6 +1718,7 @@ export type UserUncheckedUpdateManyWithoutStateInput = {
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cityId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1678,6 +1737,7 @@ export type UserCreateManyCityInput = {
   zipCode?: string | null
   countryId?: number | null
   stateId?: number | null
+  formStepCompleted?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
@@ -1693,6 +1753,7 @@ export type UserUpdateWithoutCityInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1717,6 +1778,7 @@ export type UserUncheckedUpdateWithoutCityInput = {
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1739,6 +1801,7 @@ export type UserUncheckedUpdateManyWithoutCityInput = {
   zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   countryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stateId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  formStepCompleted?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1816,6 +1879,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   countryId?: boolean
   stateId?: boolean
   cityId?: boolean
+  formStepCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isActive?: boolean
@@ -1843,6 +1907,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   countryId?: boolean
   stateId?: boolean
   cityId?: boolean
+  formStepCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isActive?: boolean
@@ -1865,6 +1930,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   countryId?: boolean
   stateId?: boolean
   cityId?: boolean
+  formStepCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isActive?: boolean
@@ -1887,6 +1953,7 @@ export type UserSelectScalar = {
   countryId?: boolean
   stateId?: boolean
   cityId?: boolean
+  formStepCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isActive?: boolean
@@ -1895,7 +1962,7 @@ export type UserSelectScalar = {
   phoneVerifiedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "address" | "zipCode" | "countryId" | "stateId" | "cityId" | "createdAt" | "updatedAt" | "isActive" | "deletedAt" | "emailVerifiedAt" | "phoneVerifiedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "address" | "zipCode" | "countryId" | "stateId" | "cityId" | "formStepCompleted" | "createdAt" | "updatedAt" | "isActive" | "deletedAt" | "emailVerifiedAt" | "phoneVerifiedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   oauthAccounts?: boolean | Prisma.User$oauthAccountsArgs<ExtArgs>
   refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
@@ -1939,6 +2006,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     countryId: number | null
     stateId: number | null
     cityId: number | null
+    formStepCompleted: number
     createdAt: Date
     updatedAt: Date
     isActive: boolean
@@ -2385,6 +2453,7 @@ export interface UserFieldRefs {
   readonly countryId: Prisma.FieldRef<"User", 'Int'>
   readonly stateId: Prisma.FieldRef<"User", 'Int'>
   readonly cityId: Prisma.FieldRef<"User", 'Int'>
+  readonly formStepCompleted: Prisma.FieldRef<"User", 'Int'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>

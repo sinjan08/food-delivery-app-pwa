@@ -7,7 +7,7 @@ export const registerUser = async (req: Request, res: Response) => {
   try {
     logger.debug('Register user controller called');
     // Extract user input from request body
-    const { name, email, password, phone, address, zipCode, countryId, stateId, cityId } = req.body;
+    const { name, email, password, phone, address, zipCode, countryId, stateId, cityId, roleCode } = req.body;
 
     // Call the registerUser service
     const result = await authService.registerSelf({
@@ -20,6 +20,7 @@ export const registerUser = async (req: Request, res: Response) => {
       countryId,
       stateId,
       cityId,
+      roleCode
     });
 
     sendResponse(res, {

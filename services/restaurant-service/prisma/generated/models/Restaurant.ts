@@ -73,6 +73,7 @@ export type RestaurantMinAggregateOutputType = {
   updatedAt: Date | null
   isActive: boolean | null
   deletedAt: Date | null
+  isApproved: boolean | null
 }
 
 export type RestaurantMaxAggregateOutputType = {
@@ -98,6 +99,7 @@ export type RestaurantMaxAggregateOutputType = {
   updatedAt: Date | null
   isActive: boolean | null
   deletedAt: Date | null
+  isApproved: boolean | null
 }
 
 export type RestaurantCountAggregateOutputType = {
@@ -123,6 +125,7 @@ export type RestaurantCountAggregateOutputType = {
   updatedAt: number
   isActive: number
   deletedAt: number
+  isApproved: number
   _all: number
 }
 
@@ -174,6 +177,7 @@ export type RestaurantMinAggregateInputType = {
   updatedAt?: true
   isActive?: true
   deletedAt?: true
+  isApproved?: true
 }
 
 export type RestaurantMaxAggregateInputType = {
@@ -199,6 +203,7 @@ export type RestaurantMaxAggregateInputType = {
   updatedAt?: true
   isActive?: true
   deletedAt?: true
+  isApproved?: true
 }
 
 export type RestaurantCountAggregateInputType = {
@@ -224,6 +229,7 @@ export type RestaurantCountAggregateInputType = {
   updatedAt?: true
   isActive?: true
   deletedAt?: true
+  isApproved?: true
   _all?: true
 }
 
@@ -336,6 +342,7 @@ export type RestaurantGroupByOutputType = {
   updatedAt: Date
   isActive: boolean
   deletedAt: Date | null
+  isApproved: boolean
   _count: RestaurantCountAggregateOutputType | null
   _avg: RestaurantAvgAggregateOutputType | null
   _sum: RestaurantSumAggregateOutputType | null
@@ -384,6 +391,7 @@ export type RestaurantWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
   isActive?: Prisma.BoolFilter<"Restaurant"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Restaurant"> | Date | string | null
+  isApproved?: Prisma.BoolFilter<"Restaurant"> | boolean
   RestaurantCategory?: Prisma.XOR<Prisma.RestaurantCategoryScalarRelationFilter, Prisma.RestaurantCategoryWhereInput>
   cities?: Prisma.XOR<Prisma.CitiesScalarRelationFilter, Prisma.citiesWhereInput>
   countries?: Prisma.XOR<Prisma.CountriesScalarRelationFilter, Prisma.countriesWhereInput>
@@ -421,6 +429,7 @@ export type RestaurantOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
   RestaurantCategory?: Prisma.RestaurantCategoryOrderByWithRelationInput
   cities?: Prisma.citiesOrderByWithRelationInput
   countries?: Prisma.countriesOrderByWithRelationInput
@@ -461,6 +470,7 @@ export type RestaurantWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
   isActive?: Prisma.BoolFilter<"Restaurant"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Restaurant"> | Date | string | null
+  isApproved?: Prisma.BoolFilter<"Restaurant"> | boolean
   RestaurantCategory?: Prisma.XOR<Prisma.RestaurantCategoryScalarRelationFilter, Prisma.RestaurantCategoryWhereInput>
   cities?: Prisma.XOR<Prisma.CitiesScalarRelationFilter, Prisma.citiesWhereInput>
   countries?: Prisma.XOR<Prisma.CountriesScalarRelationFilter, Prisma.countriesWhereInput>
@@ -498,6 +508,7 @@ export type RestaurantOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
   _count?: Prisma.RestaurantCountOrderByAggregateInput
   _avg?: Prisma.RestaurantAvgOrderByAggregateInput
   _max?: Prisma.RestaurantMaxOrderByAggregateInput
@@ -531,6 +542,7 @@ export type RestaurantScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Restaurant"> | Date | string
   isActive?: Prisma.BoolWithAggregatesFilter<"Restaurant"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Restaurant"> | Date | string | null
+  isApproved?: Prisma.BoolWithAggregatesFilter<"Restaurant"> | boolean
 }
 
 export type RestaurantCreateInput = {
@@ -548,9 +560,10 @@ export type RestaurantCreateInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -585,9 +598,10 @@ export type RestaurantUncheckedCreateInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -616,6 +630,7 @@ export type RestaurantUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -653,6 +668,7 @@ export type RestaurantUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -683,9 +699,10 @@ export type RestaurantCreateManyInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
 }
 
 export type RestaurantUpdateManyMutationInput = {
@@ -706,6 +723,7 @@ export type RestaurantUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RestaurantUncheckedUpdateManyInput = {
@@ -731,6 +749,7 @@ export type RestaurantUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RestaurantCountOrderByAggregateInput = {
@@ -756,6 +775,7 @@ export type RestaurantCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
 }
 
 export type RestaurantAvgOrderByAggregateInput = {
@@ -793,6 +813,7 @@ export type RestaurantMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
 }
 
 export type RestaurantMinOrderByAggregateInput = {
@@ -818,6 +839,7 @@ export type RestaurantMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
 }
 
 export type RestaurantSumOrderByAggregateInput = {
@@ -1161,9 +1183,10 @@ export type RestaurantCreateWithoutRestaurantCategoryInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
   states: Prisma.statesCreateNestedOneWithoutRestaurantInput
@@ -1196,9 +1219,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantCategoryInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -1261,6 +1285,7 @@ export type RestaurantScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Restaurant"> | Date | string
   isActive?: Prisma.BoolFilter<"Restaurant"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Restaurant"> | Date | string | null
+  isApproved?: Prisma.BoolFilter<"Restaurant"> | boolean
 }
 
 export type RestaurantCreateWithoutRestaurantDocInput = {
@@ -1278,9 +1303,10 @@ export type RestaurantCreateWithoutRestaurantDocInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -1314,9 +1340,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantDocInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantMenu?: Prisma.RestaurantMenuUncheckedCreateNestedManyWithoutRestaurantInput
@@ -1360,6 +1387,7 @@ export type RestaurantUpdateWithoutRestaurantDocInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -1396,6 +1424,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantDocInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantMenu?: Prisma.RestaurantMenuUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -1420,9 +1449,10 @@ export type RestaurantCreateWithoutRestaurantFeatureFlagInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -1456,9 +1486,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantFeatureFlagInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantMenu?: Prisma.RestaurantMenuUncheckedCreateNestedManyWithoutRestaurantInput
@@ -1502,6 +1533,7 @@ export type RestaurantUpdateWithoutRestaurantFeatureFlagInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -1538,6 +1570,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantFeatureFlagInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantMenu?: Prisma.RestaurantMenuUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -1562,9 +1595,10 @@ export type RestaurantCreateWithoutRestaurantImageInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -1598,9 +1632,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantImageInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantMenu?: Prisma.RestaurantMenuUncheckedCreateNestedManyWithoutRestaurantInput
@@ -1644,6 +1679,7 @@ export type RestaurantUpdateWithoutRestaurantImageInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -1680,6 +1716,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantImageInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantMenu?: Prisma.RestaurantMenuUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -1704,9 +1741,10 @@ export type RestaurantCreateWithoutRestaurantMenuInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -1740,9 +1778,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantMenuInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -1786,6 +1825,7 @@ export type RestaurantUpdateWithoutRestaurantMenuInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -1822,6 +1862,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantMenuInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -1846,9 +1887,10 @@ export type RestaurantCreateWithoutRestaurantMetricsInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -1882,9 +1924,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantMetricsInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -1928,6 +1971,7 @@ export type RestaurantUpdateWithoutRestaurantMetricsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -1964,6 +2008,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantMetricsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -1988,9 +2033,10 @@ export type RestaurantCreateWithoutRestaurantSearchLogInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -2024,9 +2070,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantSearchLogInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -2070,6 +2117,7 @@ export type RestaurantUpdateWithoutRestaurantSearchLogInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -2106,6 +2154,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantSearchLogInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -2130,9 +2179,10 @@ export type RestaurantCreateWithoutRestaurantStatusHistoryInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -2166,9 +2216,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantStatusHistoryInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -2212,6 +2263,7 @@ export type RestaurantUpdateWithoutRestaurantStatusHistoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -2248,6 +2300,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantStatusHistoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -2272,9 +2325,10 @@ export type RestaurantCreateWithoutRestaurantTimingInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -2308,9 +2362,10 @@ export type RestaurantUncheckedCreateWithoutRestaurantTimingInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -2354,6 +2409,7 @@ export type RestaurantUpdateWithoutRestaurantTimingInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -2390,6 +2446,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantTimingInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -2414,9 +2471,10 @@ export type RestaurantCreateWithoutCitiesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
   states: Prisma.statesCreateNestedOneWithoutRestaurantInput
@@ -2449,9 +2507,10 @@ export type RestaurantUncheckedCreateWithoutCitiesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -2503,9 +2562,10 @@ export type RestaurantCreateWithoutCountriesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   states: Prisma.statesCreateNestedOneWithoutRestaurantInput
@@ -2538,9 +2598,10 @@ export type RestaurantUncheckedCreateWithoutCountriesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -2592,9 +2653,10 @@ export type RestaurantCreateWithoutStatesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantCategory: Prisma.RestaurantCategoryCreateNestedOneWithoutRestaurantInput
   cities: Prisma.citiesCreateNestedOneWithoutRestaurantInput
   countries: Prisma.countriesCreateNestedOneWithoutRestaurantInput
@@ -2627,9 +2689,10 @@ export type RestaurantUncheckedCreateWithoutStatesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedCreateNestedManyWithoutRestaurantInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedCreateNestedManyWithoutRestaurantInput
@@ -2685,9 +2748,10 @@ export type RestaurantCreateManyRestaurantCategoryInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
 }
 
 export type RestaurantUpdateWithoutRestaurantCategoryInput = {
@@ -2708,6 +2772,7 @@ export type RestaurantUpdateWithoutRestaurantCategoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
   states?: Prisma.statesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -2743,6 +2808,7 @@ export type RestaurantUncheckedUpdateWithoutRestaurantCategoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -2775,6 +2841,7 @@ export type RestaurantUncheckedUpdateManyWithoutRestaurantCategoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RestaurantCreateManyCitiesInput = {
@@ -2796,9 +2863,10 @@ export type RestaurantCreateManyCitiesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
 }
 
 export type RestaurantUpdateWithoutCitiesInput = {
@@ -2819,6 +2887,7 @@ export type RestaurantUpdateWithoutCitiesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
   states?: Prisma.statesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -2854,6 +2923,7 @@ export type RestaurantUncheckedUpdateWithoutCitiesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -2886,6 +2956,7 @@ export type RestaurantUncheckedUpdateManyWithoutCitiesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RestaurantCreateManyCountriesInput = {
@@ -2907,9 +2978,10 @@ export type RestaurantCreateManyCountriesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
 }
 
 export type RestaurantUpdateWithoutCountriesInput = {
@@ -2930,6 +3002,7 @@ export type RestaurantUpdateWithoutCountriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   states?: Prisma.statesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -2965,6 +3038,7 @@ export type RestaurantUncheckedUpdateWithoutCountriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -2997,6 +3071,7 @@ export type RestaurantUncheckedUpdateManyWithoutCountriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RestaurantCreateManyStatesInput = {
@@ -3018,9 +3093,10 @@ export type RestaurantCreateManyStatesInput = {
   avgPrepTime?: number | null
   searchText?: string | null
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   isActive?: boolean
   deletedAt?: Date | string | null
+  isApproved?: boolean
 }
 
 export type RestaurantUpdateWithoutStatesInput = {
@@ -3041,6 +3117,7 @@ export type RestaurantUpdateWithoutStatesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantCategory?: Prisma.RestaurantCategoryUpdateOneRequiredWithoutRestaurantNestedInput
   cities?: Prisma.citiesUpdateOneRequiredWithoutRestaurantNestedInput
   countries?: Prisma.countriesUpdateOneRequiredWithoutRestaurantNestedInput
@@ -3076,6 +3153,7 @@ export type RestaurantUncheckedUpdateWithoutStatesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
   RestaurantDoc?: Prisma.RestaurantDocUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantFeatureFlag?: Prisma.RestaurantFeatureFlagUncheckedUpdateManyWithoutRestaurantNestedInput
   RestaurantImage?: Prisma.RestaurantImageUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -3108,6 +3186,7 @@ export type RestaurantUncheckedUpdateManyWithoutStatesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -3218,6 +3297,7 @@ export type RestaurantSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   updatedAt?: boolean
   isActive?: boolean
   deletedAt?: boolean
+  isApproved?: boolean
   RestaurantCategory?: boolean | Prisma.RestaurantCategoryDefaultArgs<ExtArgs>
   cities?: boolean | Prisma.citiesDefaultArgs<ExtArgs>
   countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
@@ -3256,6 +3336,7 @@ export type RestaurantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   updatedAt?: boolean
   isActive?: boolean
   deletedAt?: boolean
+  isApproved?: boolean
   RestaurantCategory?: boolean | Prisma.RestaurantCategoryDefaultArgs<ExtArgs>
   cities?: boolean | Prisma.citiesDefaultArgs<ExtArgs>
   countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
@@ -3285,6 +3366,7 @@ export type RestaurantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   updatedAt?: boolean
   isActive?: boolean
   deletedAt?: boolean
+  isApproved?: boolean
   RestaurantCategory?: boolean | Prisma.RestaurantCategoryDefaultArgs<ExtArgs>
   cities?: boolean | Prisma.citiesDefaultArgs<ExtArgs>
   countries?: boolean | Prisma.countriesDefaultArgs<ExtArgs>
@@ -3314,9 +3396,10 @@ export type RestaurantSelectScalar = {
   updatedAt?: boolean
   isActive?: boolean
   deletedAt?: boolean
+  isApproved?: boolean
 }
 
-export type RestaurantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerId" | "name" | "code" | "address" | "landmark" | "countryId" | "stateId" | "cityId" | "pincode" | "categoryId" | "description" | "voiceNoteDirection" | "rating" | "ratingCount" | "isPureVeg" | "avgPrepTime" | "searchText" | "createdAt" | "updatedAt" | "isActive" | "deletedAt", ExtArgs["result"]["restaurant"]>
+export type RestaurantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerId" | "name" | "code" | "address" | "landmark" | "countryId" | "stateId" | "cityId" | "pincode" | "categoryId" | "description" | "voiceNoteDirection" | "rating" | "ratingCount" | "isPureVeg" | "avgPrepTime" | "searchText" | "createdAt" | "updatedAt" | "isActive" | "deletedAt" | "isApproved", ExtArgs["result"]["restaurant"]>
 export type RestaurantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   RestaurantCategory?: boolean | Prisma.RestaurantCategoryDefaultArgs<ExtArgs>
   cities?: boolean | Prisma.citiesDefaultArgs<ExtArgs>
@@ -3384,6 +3467,7 @@ export type $RestaurantPayload<ExtArgs extends runtime.Types.Extensions.Internal
     updatedAt: Date
     isActive: boolean
     deletedAt: Date | null
+    isApproved: boolean
   }, ExtArgs["result"]["restaurant"]>
   composites: {}
 }
@@ -3841,6 +3925,7 @@ export interface RestaurantFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"Restaurant", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"Restaurant", 'Boolean'>
   readonly deletedAt: Prisma.FieldRef<"Restaurant", 'DateTime'>
+  readonly isApproved: Prisma.FieldRef<"Restaurant", 'Boolean'>
 }
     
 

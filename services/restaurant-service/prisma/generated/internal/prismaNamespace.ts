@@ -2156,7 +2156,8 @@ export const RestaurantScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isActive: 'isActive',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  isApproved: 'isApproved'
 } as const
 
 export type RestaurantScalarFieldEnum = (typeof RestaurantScalarFieldEnum)[keyof typeof RestaurantScalarFieldEnum]
@@ -2302,7 +2303,8 @@ export const UserScalarFieldEnum = {
   isActive: 'isActive',
   deletedAt: 'deletedAt',
   emailVerifiedAt: 'emailVerifiedAt',
-  phoneVerifiedAt: 'phoneVerifiedAt'
+  phoneVerifiedAt: 'phoneVerifiedAt',
+  formStepCompleted: 'formStepCompleted'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]

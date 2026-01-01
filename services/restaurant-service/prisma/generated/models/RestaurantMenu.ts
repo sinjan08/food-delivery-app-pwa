@@ -362,7 +362,7 @@ export type RestaurantMenuCreateInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   MenuItemMetrics?: Prisma.MenuItemMetricsCreateNestedOneWithoutRestaurantMenuInput
   FoodCategory: Prisma.FoodCategoryCreateNestedOneWithoutRestaurantMenuInput
   Restaurant: Prisma.RestaurantCreateNestedOneWithoutRestaurantMenuInput
@@ -379,7 +379,7 @@ export type RestaurantMenuUncheckedCreateInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   MenuItemMetrics?: Prisma.MenuItemMetricsUncheckedCreateNestedOneWithoutRestaurantMenuInput
 }
 
@@ -423,7 +423,7 @@ export type RestaurantMenuCreateManyInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type RestaurantMenuUpdateManyMutationInput = {
@@ -640,7 +640,7 @@ export type RestaurantMenuCreateWithoutFoodCategoryInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   MenuItemMetrics?: Prisma.MenuItemMetricsCreateNestedOneWithoutRestaurantMenuInput
   Restaurant: Prisma.RestaurantCreateNestedOneWithoutRestaurantMenuInput
 }
@@ -655,7 +655,7 @@ export type RestaurantMenuUncheckedCreateWithoutFoodCategoryInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   MenuItemMetrics?: Prisma.MenuItemMetricsUncheckedCreateNestedOneWithoutRestaurantMenuInput
 }
 
@@ -710,7 +710,7 @@ export type RestaurantMenuCreateWithoutMenuItemMetricsInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   FoodCategory: Prisma.FoodCategoryCreateNestedOneWithoutRestaurantMenuInput
   Restaurant: Prisma.RestaurantCreateNestedOneWithoutRestaurantMenuInput
 }
@@ -726,7 +726,7 @@ export type RestaurantMenuUncheckedCreateWithoutMenuItemMetricsInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type RestaurantMenuCreateOrConnectWithoutMenuItemMetricsInput = {
@@ -780,7 +780,7 @@ export type RestaurantMenuCreateWithoutRestaurantInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   MenuItemMetrics?: Prisma.MenuItemMetricsCreateNestedOneWithoutRestaurantMenuInput
   FoodCategory: Prisma.FoodCategoryCreateNestedOneWithoutRestaurantMenuInput
 }
@@ -795,7 +795,7 @@ export type RestaurantMenuUncheckedCreateWithoutRestaurantInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
   MenuItemMetrics?: Prisma.MenuItemMetricsUncheckedCreateNestedOneWithoutRestaurantMenuInput
 }
 
@@ -835,7 +835,7 @@ export type RestaurantMenuCreateManyFoodCategoryInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type RestaurantMenuUpdateWithoutFoodCategoryInput = {
@@ -888,7 +888,7 @@ export type RestaurantMenuCreateManyRestaurantInput = {
   description?: string | null
   isAvailable?: boolean
   createdAt?: Date | string
-  updatedAt: Date | string
+  updatedAt?: Date | string
 }
 
 export type RestaurantMenuUpdateWithoutRestaurantInput = {
